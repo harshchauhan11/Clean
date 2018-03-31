@@ -123,6 +123,9 @@ include "mainheader.php";
                             $worker_pic = "image/worker_male.png";
                         ?>
                         <li class="list-group-item row">
+                            <div class="col col-lg-12 col-xs-12 daterow">
+                                <?php echo date('d F Y', strtotime($row['booking_date'])) .', '. time_ago(strtotime($row['booking_date'])); ?>
+                            </div>
                             <div class="col col-lg-1 col-xs-2">
                                 <img src="<?php echo $worker_pic; ?>" width="70px" class="worker_pic" />
                             </div>
