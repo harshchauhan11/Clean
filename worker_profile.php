@@ -150,7 +150,7 @@ echo   date("Y/m/d") . "<br>";
                                 <div class="col-lg-7 col-sm-6 auto-wrap">
                                   <strong class="text-danger">New Service Request</strong>
                                   <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
-                                  <small class="text-info"><?php echo time_ago(strtotime( $row['request_date'] )); ?></small>
+                                  <small class="text-info"><?php echo time_ago($row['request_date']); ?></small>
                                 </div>
                                 <div class="col-lg-3 col-sm-2 text-center">
                                   <a id="yoid<?php echo $row['id']; ?>" class="btn btn-success btn-sm" href="#">ACCEPT</a>

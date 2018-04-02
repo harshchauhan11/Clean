@@ -376,7 +376,7 @@ p.blog-text{
 }
 
 .office-logo {
-  width: 100px;
+  width: 130px;
 }
 
 @media (max-width: 768px){ 
@@ -834,6 +834,12 @@ footer h3 {
     color: #fff;
     border-radius: 10px;
 }
+.middleSection {
+    /* background: #fff; */
+    padding: 0 50px;
+    /* margin: 0 50px; */
+    color: #000;
+}
 .light {
     color: #777;
 }
@@ -1085,4 +1091,35 @@ footer h3 {
 
     color: #ffffff;
 
+}
+
+.daterow {
+    background: #8199A3;
+    /* color: #aaa; */
+    font-size: .75em;
+    margin-bottom: 10px;
+    margin-left: 0;
+}
+.daterow-round {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.list-group-item {
+    padding: 0 0 10px 0;
+    border: 0 !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+.br-wrapper {
+    /* float: left; */
+    margin-top: 5px;
+    /* height: 20px; */
+}
+.leftPic {
+    background: url(../../image/small/2.jpg) center 20px / auto 90% no-repeat;
+    height: 200px;
+}
+.rightPic {
+    background: url(../../image/small/3.png) center 20px / auto 90% no-repeat;
+    height: 200px;
 }

@@ -9,26 +9,31 @@
     define( 'TIMEBEFORE_FORMAT',      '%e %b' );
     define( 'TIMEBEFORE_FORMAT_YEAR', '%e %b, %Y' );
 
-    function time_ago( $time )
+    function time_ago( $t )
     {
+        $time = strtotime($t);
         $out    = ''; // what we will print out
         $now    = time(); // current time
         $diff   = $now - $time; // difference between the current and the provided dates
+        // echo $diff . ', ';
 
-        if( $diff < 60 ) // it happened now
+        if( $diff < 60 ) { // it happened now
+            // echo 1;
             return TIMEBEFORE_NOW;
-
-        elseif( $diff < 3600 ) // it happened X minutes ago
+        } elseif( $diff < 3600 ) { // it happened X minutes ago
+            // echo 2;
             return str_replace( '{num}', ( $out = round( $diff / 60 ) ), $out == 1 ? TIMEBEFORE_MINUTE : TIMEBEFORE_MINUTES );
-
-        elseif( $diff < 3600 * 24 ) // it happened X hours ago
+        } elseif( $diff < 3600 * 24 ) { // it happened X hours ago
+            // echo 3;
             return str_replace( '{num}', ( $out = round( $diff / 3600 ) ), $out == 1 ? TIMEBEFORE_HOUR : TIMEBEFORE_HOURS );
-
-        elseif( $diff < 3600 * 24 * 2 ) // it happened yesterday
+        } elseif( $diff < 3600 * 24 * 2 ) { // it happened yesterday
+            // echo 4;
             return TIMEBEFORE_YESTERDAY;
-
-        else // falling back on a usual date format as it happened later than yesterday
-            return strftime( date( 'Y', $time ) == date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time );
+        } else { // falling back on a usual date format as it happened later than yesterday
+            // return date_format($time, "dS F M, Y");
+            return date( 'Y', $time ) == date( 'Y' ) ? date('j<\s\up>S</\s\up> M',$time) : date('j<\s\up>S</\s\up> M, Y',$time);
+            // return strftime( date( 'Y', $time ) == date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time );
+        }
     }
 
 ?>

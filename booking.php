@@ -17,10 +17,14 @@ echo $amount . "<br>";
 */
 
 
-$insert_sql = "UPDATE orders SET booking_date = now(), status = '$status' WHERE id = $oid";
-$result = $conn->query($insert_sql);
-if ($conn->affected_rows != 0) {
-   echo 1;
+$update_orders_table = "UPDATE orders SET booking_date = now(), status = '$status' WHERE id = $oid";
+$result = $conn->query($update_orders_table);
+// if ($conn->affected_rows != 0) {
+if($result) {
+    $insert_notification = "INSERT INTO requests (reqFrom, reqTo, type, comment, status, date) SELECT worker_id, user_id, 'request','$status', 'not_seen', now() FROM orders WHERE id = $oid";
+    $result2 = $conn->query($insert_notification);
+    if ($result2)
+        echo 1;
 } else {
     echo 0;
 }

@@ -22,7 +22,7 @@ if(isset($_SESSION["userdata"]))
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/style-projects.css">
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="assets/ico/favicon.ico">
@@ -87,7 +87,7 @@ else
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand wow fadeInDownBig" href="index.php"><img class="office-logo" src="" ></a>      
+                    <a class="navbar-brand wow fadeInDownBig" href="index.php"><img class="office-logo" src="image/help2home.jpg" ></a>      
                 </div>
 
                 <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
