@@ -149,8 +149,98 @@ include "mainheader.php";
             </div>
         </div>
         <div class="col col-lg-12 middleSection"><br/>
-            
             <?php
+                //$sql = "SELECT o.*,s.* FROM orders o INNER JOIN signup s ON s.id = o.user_id WHERE o.user_id = $uid";
+                $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='PENDING' ORDER BY work_time_id";
+                $result = mysqli_query($conn, $sql);
+                
+                echo '<ul class="list-group">';
+                //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                if (mysqli_num_rows($result) > 0) {
+                    $i = 0;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        if($row['gender'] == 'female')
+                            $worker_pic = "image/worker_female2.png";
+                        if($row['gender'] == 'male')
+                            $worker_pic = "image/worker_male.png";
+
+                        $rating = "SELECT AVG(rating)/COUNT(*) AS rating FROM ratings WHERE worker_id = " . $row['worker_id'];
+                        $rating_result = mysqli_query($conn, $rating);
+                        // echo '<li class="list-group-item row">';
+                        //     echo '<div class="col col-lg-12 col-xs-12 text-center">';
+                        //         echo '<h2>You don\'t have<br/>any service<br/>booked<br/>yet.</h2>';
+                        //         echo '<a class="btn btn-primary nomarg btn-lg" href="index.php#services">BOOK YOUR SERVICE</a><br/><br/>';
+                        //     echo '</div>';
+                        // echo '</li>';
+                        ?>
+                        <li class="list-group-item row">
+                            <div class="col col-lg-12 col-xs-12 daterow <?php echo $i==0?'daterow-round':''; ?>">
+                                <?php echo 'Request Sent : ' . /*date('d F Y', strtotime($row['booking_date'])) .', '. */time_ago($row['request_date']); ?>
+                            </div>
+                            <div class="col col-lg-1 col-xs-2">
+                                <img src="<?php echo $worker_pic; ?>" width="70px" class="worker_pic" />
+                            </div>
+                            <div class="col col-lg-4 col-xs-10">
+                                <?php echo $row['worker_id'] . ' : <b class="worker_name">' . $row['name']; ?></b><br/>
+                                <span class="light"><?php echo $row['email']; ?><br/>
+                                <select class="rating" data-id="rate<?php echo $row['worker_id']; ?>">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                <?php 
+                                if (mysqli_num_rows($rating_result) > 0) {
+                                    while($rating_row = mysqli_fetch_assoc($rating_result)) {
+                                        // echo json_encode($row['worker_id'], JSON_HEX_TAG);
+                                        // echo json_encode($rating_row['rating'], JSON_HEX_TAG);
+
+                                ?>
+                                        
+                                        <script type="text/javascript">
+                                        {
+                                            
+                                            // alert($el + "," + $rate);
+                                            $(document).ready(function() {
+                                                // alert(2);
+                                                var $el = 0
+                                                $rate = 0;
+                                                $el = <?php echo json_encode($row['worker_id'], JSON_HEX_TAG); ?>;
+                                                $rate = <?php echo $rating_row['rating']; ?>;
+                                                $("select[data-id*="+$el+"]").barrating('set', $rate);
+                                            });
+                                            // $("select[data-id*="+$el+"]").barrating({
+                                            //     theme: 'fontawesome-stars-o',
+                                            //     initialRating: $rate
+                                            // });
+                                            // $("select[data-id*="+$el+"]").barrating('set', $rate);
+                                            // $('.rating').barrating('set', 4);
+                                            // rateIt($el, $rate);
+                                            
+                                        }
+                                        </script>
+                                <?php
+                                    }
+                                }
+                                ?>
+                                
+                                
+                                Service Area: <?php echo $row['area']; ?></span>
+                            </div>
+                            <div class="col col-lg-3 col-xs-6 text-right">
+                                Service : <b><?php echo '<a href="service_booking.php?inner_id='.$row['inner_service_id'].'">' . $row['inner_service'] . "</a>"; ?></b><br/>
+                                Time : <b><?php echo $row['time']; ?></b>
+                            </div>
+                            <div class="col col-lg-4 col-xs-6 text-right">
+                                STATUS<br/><big class="red"><b>PENDING</b></big>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    echo '<br/>';
+                }
+
                 //$sql = "SELECT o.*,s.* FROM orders o INNER JOIN signup s ON s.id = o.user_id WHERE o.user_id = $uid";
                 $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='ACCEPTED' ORDER BY work_time_id";
                 $result = mysqli_query($conn, $sql);
@@ -240,7 +330,7 @@ include "mainheader.php";
                     echo '<div class="col col-lg-4 col-xs-4 leftPic"></div>';
                     echo '<div class="col col-lg-4 col-xs-4 text-center">';
                     echo '<h2>You don\'t have<br/>any service<br/>booked<br/>yet.</h2>';
-                    echo '<a class="btn btn-primary nomarg btn-lg" href="index.php">BOOK YOUR SERVICE</a><br/><br/>';
+                    echo '<a class="btn btn-primary nomarg btn-lg" href="index.php#services">BOOK YOUR SERVICE</a><br/><br/>';
                     echo '</div>';
                     echo '<div class="col col-lg-4 col-xs-4 rightPic"></div>';
                     echo '</li>';
