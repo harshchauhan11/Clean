@@ -102,7 +102,7 @@ include("mainheader.php");
             <label class="col-md-4 control-label" for="name">Name</label>
 
             <div class="col-md-4">
-                <input id="name"  name="name" type="text" placeholder="Name" class="form-control input-md" pattern="[a-zA-Z"  oninvalid="setCustomValidity('alphabates only.')" required>
+                <input id="name"  name="name" type="text" placeholder="Name" class="form-control input-md" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="alphabates only" required>
                 <span class="help-block">Please type in your full name</span>
             </div>
         </div>
@@ -274,7 +274,7 @@ include("mainheader.php");
       <!-- Password-->
       <label class="col-md-4 control-label" for="password">Password</label>
       <div class="col-md-4">
-        <input type="password" id="password" name="password" placeholder="" 
+          <input type="password" id="password" name="password" placeholder=""  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="plz match"
                 class="form-control input-md" required>
         <span class="help-block"></span>
       </div>

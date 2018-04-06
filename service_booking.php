@@ -278,10 +278,10 @@ if (mysqli_num_rows($result) > 0) {
                     ?>         
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="title">No of <?php echo $inner_name ?></label>
+                        <label class="col-md-4 control-label" for="title" >No of <?php echo $inner_name ?></label>
 
                         <div class="col-md-4">
-                            <input id="no_of_item" name="no_of_item" onkeyup="getTotalBillingAmount(this.value);" onchange="getTotalBillingAmount(this.value);" type="number" placeholder=""
+                            <input id="no_of_item" name="no_of_item" onkeyup="getTotalBillingAmount(this.value);" onchange="getTotalBillingAmount(this.value);" type="number" min="1" placeholder=""
                                    class="form-control input-md" value="1" required>
                             <span class="help-block">One <?php echo $info ?> cost is <?php echo " $rate"; ?></span>
                         </div>
