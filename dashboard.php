@@ -19,11 +19,11 @@ include "mainheader.php";
         $(".notification-box").hover(function() {
             // alert($(this).data("state"));
             if($(this).data("state") == "ns") {
-                alert("ns");
+                // alert("ns");
                 var $rid = $(this).data("id"),
                     $state = 'seen';
                 $.post("notifications.php", {rid: $rid, status: $state}, function(result) {
-                    alert("result = "+result);
+                    // alert("result = "+result);
                     if(result.trim() == 1) {
                         // SUCCESS
                         // $(this).attr("id").indexOf("y")>=0?alert("You successfully accepted Service Request !"):alert("You has rejected Service Request !");
@@ -35,7 +35,7 @@ include "mainheader.php";
                     }
                 });
             } else {
-                alert("s");
+                // alert("s");
             }
         });
 
@@ -100,12 +100,9 @@ include "mainheader.php";
                         <?php
                                 // $sql = "SELECT *, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE user_id = ".$sessio_data['id']." AND (status = 'REJECTED' OR status = 'ACCEPTED') ORDER BY booking_date DESC";
                                 $sql = "SELECT r.*, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service, inner_service_id, booking_date, o.status AS order_status FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY booking_date DESC";
-                                $notif = "SELECT COUNT(*) FROM requests WHERE status = 'not_seen' AND reqTo = ".$sessio_data['id'];
                                 $result = mysqli_query($conn, $sql);
-                                $notif_result = mysqli_query($conn, $notif);
-                                // echo $notif;
                                 // echo $notif_result;
-                                echo mysqli_num_rows($notif_result);
+                                
                                 if (mysqli_num_rows($result) > 0) {
                                 ?>
                         <div class="col-lg-1 col-sm-1 follow-info notify_icons redbg">
@@ -113,7 +110,22 @@ include "mainheader.php";
                                 <li class="active text-center">
                                 <div class="btn-group show-on-hover">
                                 <?php
-                                    echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> <span>'.mysqli_num_rows($notif_result).'</span></i> <span class="caret"></span>';
+                                    $notif = "SELECT * FROM requests WHERE status = 'not_seen' AND reqTo = ".$sessio_data['id'];
+                                    // echo $notif;
+                                    $notif_result = mysqli_query($conn, $notif);
+                                    // echo mysqli_num_rows($notif_result);
+                                    // if(mysqli_num_rows($notif_result) > 0) {
+                                    //     echo 'hey';
+                                    //     while($notif_row = mysqli_fetch_assoc($notif_result)) {
+                                    //         echo $notif_row['id'];
+                                    //     }
+                                    // }
+
+                                    echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> ';
+                                    if(mysqli_num_rows($notif_result) > 0)
+                                        echo '<span>'. mysqli_num_rows($notif_result) . '</span>';
+                                    
+                                    echo '</i> <span class="caret"></span>';
                                     echo '<ul class="dropdown-menu text-left" role="menu">';
                                     echo '<li><h5>Notifications</h5></li>';
                                     echo '<li class="divider"></li>';
@@ -130,7 +142,9 @@ include "mainheader.php";
                                             <small class="text-info"><?php echo time_ago($row['booking_date'] ); ?></small>
                                             </div>
                                             <div class="col-lg-3 col-sm-2 text-center">
-                                                <a class="btn btn-success btn-sm" href="service_booking.php?inner_id=<?php echo $row['inner_service_id']; ?>">BOOK AGAIN</a>
+                                                <?php if($row['order_status'] == "REJECTED") { ?>
+                                                    <a class="btn btn-success btn-sm" href="service_booking.php?inner_id=<?php echo $row['inner_service_id']; ?>">BOOK AGAIN</a>
+                                                <?php } ?>
                                                 <!-- <a id="noid<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" href="#">REJECT</a> -->
                                             </div>
                                         </div>

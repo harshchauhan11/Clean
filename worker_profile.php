@@ -182,7 +182,7 @@ echo   date("Y/m/d") . "<br>";
                                 </div>    
                                 <div class="col-lg-7 col-sm-6 auto-wrap">
                                   <strong class="text-danger">New Service Request</strong>
-                                  <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
+                                  <div><?php /*echo $row['user_prefix'];*/ ?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
                                   <small class="text-info"><?php echo time_ago($row['request_date']); ?></small>
                                 </div>
                                 <div class="col-lg-3 col-sm-2 text-center">
@@ -260,7 +260,7 @@ echo   date("Y/m/d") . "<br>";
                       ?>
                       <div class="act-time card">
                         Service: <?php echo $row['service']; ?><br/>
-                        Customer: <?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?><br/>
+                        Customer: <?php /*echo $row['user_prefix'];*/ ?> <?php echo $row['user_name']; ?><br/>
                         Timing: <?php echo $row['work_time']; ?>
                       </div>
                       <?php
