@@ -21,7 +21,7 @@ $update_orders_table = "UPDATE orders SET booking_date = now(), status = '$statu
 $result = $conn->query($update_orders_table);
 // if ($conn->affected_rows != 0) {
 if($result) {
-    $insert_notification = "INSERT INTO requests (reqFrom, reqTo, type, comment, status, date) SELECT worker_id, user_id, 'request','$status', 'not_seen', now() FROM orders WHERE id = $oid";
+    $insert_notification = "INSERT INTO requests (reqFrom, reqTo, type, comment, status, date, order_id) SELECT worker_id, user_id, 'request','$status', 'not_seen', now(), id FROM orders WHERE id = $oid";
     $result2 = $conn->query($insert_notification);
     if ($result2)
         echo 1;

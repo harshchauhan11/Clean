@@ -153,16 +153,7 @@ echo   date("Y/m/d") . "<br>";
                 <div class="col-lg-1 col-sm-1 col-centered follow-info notify_icons">
                   <ul>
                     <li class="active text-center">
-                      <div class="btn-group show-on-hover">
-                        <i class="fa fa-comments fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> </i> <span class="caret"></span>
-                        <ul class="dropdown-menu text-left" role="menu">
-                          <li><a href="#">Comments</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                        </ul>
-                      </div>
+                        <i class="fa fa-comments fa-2x" data-toggle="dropdown"> </i> <span class="caret"></span>
                     </li>
 
                   </ul>
@@ -225,10 +216,8 @@ echo   date("Y/m/d") . "<br>";
                 <div class="col-lg-1 col-sm-1 follow-info notify_icons">
                   <ul>
                     <li class="active text-center">
-
                       <i class="fa fa-tachometer fa-2x"> </i>
                     </li>
-
                   </ul>
                 </div>
               </div>

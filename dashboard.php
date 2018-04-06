@@ -16,6 +16,29 @@ include "mainheader.php";
 //    $(function() {
     $(document).ready(function() {
     
+        $(".notification-box").hover(function() {
+            // alert($(this).data("state"));
+            if($(this).data("state") == "ns") {
+                alert("ns");
+                var $rid = $(this).data("id"),
+                    $state = 'seen';
+                $.post("notifications.php", {rid: $rid, status: $state}, function(result) {
+                    alert("result = "+result);
+                    if(result.trim() == 1) {
+                        // SUCCESS
+                        // $(this).attr("id").indexOf("y")>=0?alert("You successfully accepted Service Request !"):alert("You has rejected Service Request !");
+                        // location.reload();
+                    } else if(result.trim() == 0) {
+                        // FAILURE
+                        // alert("Something went wrong ! Service has not been booked !");
+                        // location.reload();
+                    }
+                });
+            } else {
+                alert("s");
+            }
+        });
+
       $('.rating').barrating({
         theme: 'fontawesome-stars-o',
         initialRating: -1,
@@ -68,14 +91,7 @@ include "mainheader.php";
                             <ul>
                                 <li class="active text-center">
                                     <div class="btn-group show-on-hover">
-                                        <i class="fa fa-comments fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> </i> <span class="caret"></span>
-                                        <ul class="dropdown-menu text-left" role="menu">
-                                        <li><a href="#">Comments</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                        </ul>
+                                        <i class="fa fa-comments fa-2x" data-toggle="dropdown"> </i> <span class="caret"></span>
                                     </div>
                                 </li>
 
@@ -83,9 +99,13 @@ include "mainheader.php";
                         </div>
                         <?php
                                 // $sql = "SELECT *, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE user_id = ".$sessio_data['id']." AND (status = 'REJECTED' OR status = 'ACCEPTED') ORDER BY booking_date DESC";
-                                $sql = "SELECT *, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY booking_date DESC";
+                                $sql = "SELECT r.*, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service, inner_service_id, booking_date, o.status AS order_status FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY booking_date DESC";
+                                $notif = "SELECT COUNT(*) FROM requests WHERE status = 'not_seen' AND reqTo = ".$sessio_data['id'];
                                 $result = mysqli_query($conn, $sql);
-                        
+                                $notif_result = mysqli_query($conn, $notif);
+                                // echo $notif;
+                                // echo $notif_result;
+                                echo mysqli_num_rows($notif_result);
                                 if (mysqli_num_rows($result) > 0) {
                                 ?>
                         <div class="col-lg-1 col-sm-1 follow-info notify_icons redbg">
@@ -93,20 +113,20 @@ include "mainheader.php";
                                 <li class="active text-center">
                                 <div class="btn-group show-on-hover">
                                 <?php
-                                    echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> <span>'.mysqli_num_rows($result).'</span></i> <span class="caret"></span>';
+                                    echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> <span>'.mysqli_num_rows($notif_result).'</span></i> <span class="caret"></span>';
                                     echo '<ul class="dropdown-menu text-left" role="menu">';
                                     echo '<li><h5>Notifications</h5></li>';
                                     echo '<li class="divider"></li>';
                                     while ($row = mysqli_fetch_assoc($result)) {
                                     ?>
-                                    <li class="notification-box gray-box2">
+                                    <li class="notification-box <?php if($row['status'] == "not_seen") echo "gray-box"; else echo "white-box"; ?>" data-state="<?php if($row['status'] == "not_seen") echo "ns"; else echo "s"; ?>" data-id="<?php echo $row['id']; ?>">
                                         <div class="row">
                                             <div class="col-lg-2 col-sm-3 text-center">
                                             <img src="image/home.png" width="40px" class="w-50 rounded-circle">
                                             </div>    
                                             <div class="col-lg-7 col-sm-6 auto-wrap">
                                             <!-- <strong class="text-danger">New Service Request</strong> -->
-                                            <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has <?php echo $row['status']; ?> your request for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
+                                            <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has <?php echo $row['order_status']; ?> your request for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
                                             <small class="text-info"><?php echo time_ago($row['booking_date'] ); ?></small>
                                             </div>
                                             <div class="col-lg-3 col-sm-2 text-center">
@@ -151,12 +171,13 @@ include "mainheader.php";
         <div class="col col-lg-12 middleSection"><br/>
             <?php
                 //$sql = "SELECT o.*,s.* FROM orders o INNER JOIN signup s ON s.id = o.user_id WHERE o.user_id = $uid";
-                $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='PENDING' ORDER BY work_time_id";
+                $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='PENDING' ORDER BY request_date DESC";
                 $result = mysqli_query($conn, $sql);
                 
                 echo '<ul class="list-group">';
                 //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 if (mysqli_num_rows($result) > 0) {
+                    echo '<h3 class="dash_title">Your Service Requests</h3>';
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
                         if($row['gender'] == 'female')
@@ -248,6 +269,7 @@ include "mainheader.php";
                 echo '<ul class="list-group">';
                 //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 if (mysqli_num_rows($result) > 0) {
+                    echo '<h3 class="dash_title">Your Booked Services</h3>';
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
                         //while ($row = mysqli_fetch_array($result)) {

@@ -183,12 +183,15 @@ if (mysqli_num_rows($result) > 0) {
                 <label class="col-md-4 control-label" for="title">Which Date</label>
                 <div class="form-inline">
                     <div class="col-md-4">
-                        <div class="form-group col-lg-4">
+                        <div class="form-group col-lg-6">
+                            <input id="datepicker" onchange="checkDate(event)" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" >
+                        </div>
+                        <!-- <div class="form-group col-lg-4">
                             <select name="year" id="year" class="form-control">
                                 <option value="2018" selected>Year</option> 
                                 <option value="2018">2018</option>
                             </select>     
-                        </div>                    
+                        </div>
                         <div class="form-group col-lg-4" style="align-items: center">
                             <select name="month" id="month" onchange="" class="form-control" size="1">
                                 <option value="--" selected>Month</option>
@@ -241,7 +244,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <option value="30">30</option>      
                                 <option value="31">31</option>
                             </select>
-                        </div>                                              
+                        </div>                                               -->
                     </div>
                 </div>  
             </div>
@@ -384,11 +387,23 @@ if (mysqli_num_rows($result) > 0) {
     <script src="admin/js/scripts.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script> -->
 <script>
+    var pastDate = false;
     var getTotalBillingAmount = function(amount) {
         //console.log(document.getElementById("single_amount"));
         //document.getElementById("billing_display").innerHTML = parseInt(document.getElementById("single_amount").value) * parseInt(amount);
         $("#billing_display").html(parseInt($("#single_amount").val()) * parseInt(amount));
         $("#final_amount").val(parseInt($("#single_amount").val()) * parseInt(amount));
+    }
+    var checkDate = function(event) {
+        // alert(event.currentTarget.value);
+        var selectedText = event.currentTarget.value;
+        var selectedDate = new Date(selectedText);
+        var now = new Date();
+        if (selectedDate < now) {
+            pastDate = true;
+            alert("You selected past date. Please select future date.");
+        } else
+            pastDate = false;
     }
     $(document).ready(function() {
         $('.rating').barrating({
@@ -397,12 +412,15 @@ if (mysqli_num_rows($result) > 0) {
         });
         $("#searchForm").submit(function(e) {
             e.preventDefault();
-            $.get("search.php?" + $('#searchForm').serialize(), function(data, status){
-                $("#workerResult").html(data);
-                $('html, body').animate({
-                    scrollTop: $("#workerResult").offset().top
-                }, 500);
-            });
+            if(!pastDate) {
+                $.get("search.php?" + $('#searchForm').serialize(), function(data, status){
+                    $("#workerResult").html(data);
+                    $('html, body').animate({
+                        scrollTop: $("#workerResult").offset().top
+                    }, 500);
+                });
+            } else
+                alert("You selected past date. Please select future date.");
         })
     })
 </script>

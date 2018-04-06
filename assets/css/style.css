@@ -914,6 +914,9 @@ footer h3 {
     min-width: 400px;
     /* display: block !important; */
 }
+.dropdown-menu .divider {
+    margin: 0 !important;
+}
 /* .dropdown-menu:before{
     content: "";
     position: absolute;
@@ -927,8 +930,17 @@ footer h3 {
     padding: 3px 10px;
     font-weight: bold;
 }
+.gray-box, .white-box {
+    padding: 10px !important;
+}
 .gray-box {
-    background: #eee;
+    background: #ccc;
+}
+.gray-box:hover {
+    background: #fff;
+}
+.white-box {
+    background: #fff;
 }
 .notification-box {
     padding: 0px 10px 5px 10px;
@@ -1129,4 +1141,13 @@ footer h3 {
 .roundBottom {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+.dash_title {
+    /* color: #FEC606; */
+    color: #ccc;
+    margin-left: -12px;
+}
+.datepicker-input {
+    border-radius: 3px;
+    border: 1px solid #ccc;
 }
