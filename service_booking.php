@@ -85,6 +85,7 @@ if (mysqli_query($conn, $sql)) {
 }
     ?>
 
+<!-- <script src="js/jquery.barrating.min.js"></script> -->
 <?php
 
 include("mainheader.php");
@@ -117,7 +118,8 @@ if (mysqli_num_rows($result) > 0) {
 
 ?>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.barrating.min.js"></script>
 <div class="container">
     <div class="row">
         <div class="col col-lg-12 middleHeader">
@@ -366,23 +368,21 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 </div>
 <!-- javascripts -->
- <script src="js/form-validation-script.js"></script>
-  <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script src="admin/js/jquery.js"></script>
-  <script src="admin/js/bootstrap.min.js"></script>
-  <!-- nice scroll -->
-  <script src="admin/js/jquery.scrollTo.min.js"></script>
-  <script src="admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!-- jquery validate js -->
-  <script type="text/javascript" src="admin/js/jquery.validate.min.js"></script>
+    <!-- <script src="js/form-validation-script.js"></script> -->
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <!-- <script src="admin/js/jquery.js"></script> -->
+    <script src="admin/js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="admin/js/jquery.scrollTo.min.js"></script>
+    <script src="admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- jquery validate js -->
+    <script type="text/javascript" src="admin/js/jquery.validate.min.js"></script>
 
-  <!-- custom form validation script for this page-->
-  <script src="admin/js/form-validation-script.js"></script>
-  <!--custome script for all page-->
-  <script src="admin/js/scripts.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <!-- custom form validation script for this page-->
+    <!-- <script src="admin/js/form-validation-script.js"></script> -->
+    <!--custome script for all page-->
+    <script src="admin/js/scripts.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script> -->
 <script>
     var getTotalBillingAmount = function(amount) {
         //console.log(document.getElementById("single_amount"));
@@ -391,6 +391,10 @@ if (mysqli_num_rows($result) > 0) {
         $("#final_amount").val(parseInt($("#single_amount").val()) * parseInt(amount));
     }
     $(document).ready(function() {
+        $('.rating').barrating({
+        theme: 'fontawesome-stars-o',
+        initialRating: -1
+        });
         $("#searchForm").submit(function(e) {
             e.preventDefault();
             $.get("search.php?" + $('#searchForm').serialize(), function(data, status){

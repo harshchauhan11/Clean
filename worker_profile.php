@@ -29,7 +29,10 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
   <!-- Custom styles -->
   <link href="admin/css/style.css" rel="stylesheet">
   <link href="admin/css/style-responsive.css" rel="stylesheet" />
+  <link href="js/fontawesome-stars-o.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+  <script src="js/jquery.barrating.min.js" type="text/javascript"></script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -99,6 +102,45 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
                 <div class="col-lg-7 col-xs-12 follow-info">
                   <h2 style="text-transform: capitalize">Hello, <b><?php echo $sessio_data['name']; ?></b> !</h2>
                   <p><?php echo $sessio_data['email']; ?></p>
+                  <?php
+                  $rating = "SELECT COALESCE(AVG(rating)/COUNT(*),0) AS rating FROM ratings WHERE worker_id = " . $sessio_data['id'];
+                  $rating_result = mysqli_query($conn, $rating);
+                  ?>
+                  <input type="hidden" id="rate" name="rate" value="" />
+                  <select class="rating" data-id="rate<?php echo $sessio_data['id']; ?>">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br/>
+                            <?php 
+                                if (mysqli_num_rows($rating_result) > 0) {
+                                    while($rating_row = mysqli_fetch_assoc($rating_result)) {
+                                        // echo json_encode($sessio_data['id'], JSON_HEX_TAG);
+                                        // echo json_encode($rating_row['rating'], JSON_HEX_TAG);
+
+                                ?>
+                                        
+                                        <script type="text/javascript">
+                                        {
+                                            $(document).ready(function() {
+                                                // alert(2);
+                                                var $el = 0
+                                                $rate = 0;
+                                                $el = <?php echo json_encode($sessio_data['id'], JSON_HEX_TAG); ?>;
+                                                $rate = <?php echo $rating_row['rating']; ?>;
+                                                $("#rate").val($rate);
+                                                // alert($rate);
+                                                $("select[data-id*="+$el+"]").barrating('set', $rate);
+                                                $("select[data-id*="+$el+"]").parent().find(".br-widget").attr("role", $rate);
+                                            });
+                                        }
+                                        </script>
+                                <?php
+                                    }
+                                }
+                                ?>
 <!--                 <p><i class="fa fa-twitter">jenifertweet</i></p>-->
                   <h6>
                       <span><i class="icon_clock_alt"></i><?php echo  date("h:i:sa");?></span>
@@ -371,13 +413,13 @@ echo   date("Y/m/d") . "<br>";
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="admin/js/jquery.js"></script>
+  <!-- <script src="admin/js/jquery.js"></script> -->
   <script src="admin/js/bootstrap.min.js"></script>
   <!-- nice scroll -->
   <script src="admin/js/jquery.scrollTo.min.js"></script>
   <script src="admin/js/jquery.nicescroll.js" type="text/javascript"></script>
   <!-- jquery knob -->
-  <script src="admin/ssets/jquery-knob/js/jquery.knob.js"></script>
+  <!-- <script src="admin/ssets/jquery-knob/js/jquery.knob.js"></script> -->
   <!--custome script for all page-->
   <script src="admin/js/scripts.js"></script>
 
@@ -388,18 +430,32 @@ echo   date("Y/m/d") . "<br>";
 <script>
     
     $(document).ready(function() {
+      var $r = $("#rate").val();
+      $('.rating').barrating({
+        theme: 'fontawesome-stars-o',
+        initialRating: $r,
+        readonly: true
+    });
         $("[id*=oid").click(function(e) {
-            // alert("oid = " + $(this).attr("id").replace("yoid",""));
+            $element = $(this).attr("id");
+            // alert("oid = " + $element.replace("yoid",""));
+            // alert($element);
             var $oid = $(this).attr("id").indexOf("y")>=0?$(this).attr("id").replace("yoid",""):$(this).attr("id").replace("noid","");
             var $status = $(this).attr("id").indexOf("y")>=0?'ACCEPTED':'REJECTED';
             // alert($status);
             // alert($oid);
 
             $.post("booking.php", {oid: $oid, status: $status}, function(result) {
-                alert("result = "+result);
+                
                 if(result.trim() == 1) {
+                  // alert("result = "+result);
+                  // alert($element);
                     // SUCCESS
-                    $(this).attr("id").indexOf("y")>=0?alert("You successfully accepted Service Request !"):alert("You has rejected Service Request !");
+                    // $(this).attr("id").indexOf("y")>=0?alert("You successfully accepted Service Request !"):alert("You has rejected Service Request !");
+                    if($element.indexOf("y")>=0)
+                      alert("You successfully accepted Service Request !")
+                    else
+                      alert("You has rejected Service Request !")
                     location.reload();
                 } else if(result.trim() == 0) {
                     // FAILURE

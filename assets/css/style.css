@@ -1123,3 +1123,10 @@ footer h3 {
     background: url(../../image/small/3.png) center 20px / auto 90% no-repeat;
     height: 200px;
 }
+.red {
+    color: #CF000F !important;
+}
+.roundBottom {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

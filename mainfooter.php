@@ -40,7 +40,7 @@
 
   
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" type="text/javascript"></script>
     <script>
       new WOW().init();
     </script>
