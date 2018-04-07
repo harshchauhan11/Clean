@@ -15,23 +15,31 @@ include "mainheader.php";
   <script type="text/javascript">
 //    $(function() {
     $(document).ready(function() {
-    
-        $(".notification-box").hover(function() {
+        if($(".note_count").html() == "")
+            $(".note_count").hide();
+        // $(".note_count").slideUp();
+        // $(".note_count").html("2");
+        $(".notification-box").hover(function(e) {
+            $element = $(this);
             // alert($(this).data("state"));
             if($(this).data("state") == "ns") {
-                // alert("ns");
+                // alert($element.attr("class"));
                 var $rid = $(this).data("id"),
+                    $uid = <?php echo $uid; ?>,
                     $state = 'seen';
-                $.post("notifications.php", {rid: $rid, status: $state}, function(result) {
+                $.post("notifications.php", {rid: $rid, uid: $uid, status: $state}, function(result) {
+                    var data = jQuery.parseJSON( result );
                     // alert("result = "+result);
-                    if(result.trim() == 1) {
-                        // SUCCESS
-                        // $(this).attr("id").indexOf("y")>=0?alert("You successfully accepted Service Request !"):alert("You has rejected Service Request !");
-                        // location.reload();
-                    } else if(result.trim() == 0) {
-                        // FAILURE
-                        // alert("Something went wrong ! Service has not been booked !");
-                        // location.reload();
+                    // alert("result = "+data.status);
+                    // alert("result = "+result.count);
+                    if(data.status) {
+                        $element.removeClass("gray-box").addClass("white-box");
+                        if(data.count > 0) {
+                            $(".note_count").html(data.count);
+                            // $(".note_count").slideUp();
+                        } else if(data.count == 0) {
+                            $(".note_count").slideUp();
+                        }
                     }
                 });
             } else {
@@ -111,6 +119,7 @@ include "mainheader.php";
                                 <div class="btn-group show-on-hover">
                                 <?php
                                     $notif = "SELECT * FROM requests WHERE status = 'not_seen' AND reqTo = ".$sessio_data['id'];
+                                    // $notif = "SELECT * FROM requests";
                                     // echo $notif;
                                     $notif_result = mysqli_query($conn, $notif);
                                     // echo mysqli_num_rows($notif_result);
@@ -122,15 +131,19 @@ include "mainheader.php";
                                     // }
 
                                     echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> ';
+                                    echo '<span class="note_count">';
                                     if(mysqli_num_rows($notif_result) > 0)
-                                        echo '<span>'. mysqli_num_rows($notif_result) . '</span>';
+                                        echo mysqli_num_rows($notif_result);
+                                    echo '</span>';
                                     
                                     echo '</i> <span class="caret"></span>';
                                     echo '<ul class="dropdown-menu text-left" role="menu">';
                                     echo '<li><h5>Notifications</h5></li>';
                                     echo '<li class="divider"></li>';
+                                    echo '<div class="note-container">';
                                     while ($row = mysqli_fetch_assoc($result)) {
                                     ?>
+                                    
                                     <li class="notification-box <?php if($row['status'] == "not_seen") echo "gray-box"; else echo "white-box"; ?>" data-state="<?php if($row['status'] == "not_seen") echo "ns"; else echo "s"; ?>" data-id="<?php echo $row['id']; ?>">
                                         <div class="row">
                                             <div class="col-lg-2 col-sm-3 text-center">
@@ -151,6 +164,7 @@ include "mainheader.php";
                                     </li>
                                     <?php
                                     }
+                                    echo '</div>';
                                     echo '</ul>';
                                     ?>
                                     </div>
@@ -199,7 +213,7 @@ include "mainheader.php";
                         if($row['gender'] == 'male')
                             $worker_pic = "image/worker_male.png";
 
-                        $rating = "SELECT AVG(rating)/COUNT(*) AS rating FROM ratings WHERE worker_id = " . $row['worker_id'];
+                        $rating = "SELECT AVG(rating) AS rating FROM ratings WHERE worker_id = " . $row['worker_id'];
                         $rating_result = mysqli_query($conn, $rating);
                         // echo '<li class="list-group-item row">';
                         //     echo '<div class="col col-lg-12 col-xs-12 text-center">';
@@ -244,6 +258,7 @@ include "mainheader.php";
                                                 $el = <?php echo json_encode($row['worker_id'], JSON_HEX_TAG); ?>;
                                                 $rate = <?php echo $rating_row['rating']; ?>;
                                                 $("select[data-id*="+$el+"]").barrating('set', $rate);
+                                                $("select[data-id*="+$el+"]").barrating('readonly', true);
                                             });
                                             // $("select[data-id*="+$el+"]").barrating({
                                             //     theme: 'fontawesome-stars-o',
@@ -292,7 +307,7 @@ include "mainheader.php";
                         if($row['gender'] == 'male')
                             $worker_pic = "image/worker_male.png";
 
-                        $rating = "SELECT AVG(rating)/COUNT(*) AS rating FROM ratings WHERE worker_id = " . $row['worker_id'];
+                        $rating = "SELECT AVG(rating) AS rating FROM ratings WHERE worker_id = " . $row['worker_id'];
                         $rating_result = mysqli_query($conn, $rating);
                         
                         ?>

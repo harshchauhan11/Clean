@@ -43,7 +43,7 @@ if (mysqli_num_rows($result) > 0) {
         }
 
         // $rating = "SELECT AVG(rating)/COUNT(*) AS rating FROM ratings WHERE worker_id = " . $row['id'];
-        $rating = "SELECT COALESCE(AVG(rating)/COUNT(*),0) AS rating FROM ratings WHERE worker_id = " . $row['id'];
+        $rating = "SELECT COALESCE(AVG(rating),0) AS rating FROM ratings WHERE worker_id = " . $row['id'];
         $rating_result = mysqli_query($conn, $rating);
         ?>
 

@@ -103,7 +103,7 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
                   <h2 style="text-transform: capitalize">Hello, <b><?php echo $sessio_data['name']; ?></b> !</h2>
                   <p><?php echo $sessio_data['email']; ?></p>
                   <?php
-                  $rating = "SELECT COALESCE(AVG(rating)/COUNT(*),0) AS rating FROM ratings WHERE worker_id = " . $sessio_data['id'];
+                  $rating = "SELECT COALESCE(AVG(rating),0) AS rating FROM ratings WHERE worker_id = " . $sessio_data['id'];
                   $rating_result = mysqli_query($conn, $rating);
                   ?>
                   <input type="hidden" id="rate" name="rate" value="" />

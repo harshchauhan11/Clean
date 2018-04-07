@@ -945,6 +945,23 @@ footer h3 {
 .notification-box {
     padding: 0px 10px 5px 10px;
 }
+.note-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 200px;
+}
+::-webkit-scrollbar {
+    background: #eee;
+    border-radius: 4px;
+    height: 8px;
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 4px;
+  }
+  
 .dropdown-menu li {
     /* border-bottom: 1px solid #eee; */
 }

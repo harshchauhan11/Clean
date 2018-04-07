@@ -105,6 +105,9 @@ else
                                 <a href="#">Welcome, <?php echo $sessio_data['name']; ?></a>
                             </li>
                             <li>
+                                <a href="index.php#services">Book A Service</a>
+                            </li>
+                            <li>
                                 <a href="dashboard.php">Dashboard</a>
                             </li>
                             <li class="<?php setActiveClassMenu('logout.php'); ?>">
