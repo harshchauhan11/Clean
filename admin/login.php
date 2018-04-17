@@ -2,7 +2,7 @@
 <?php
 $error = "";
 if (isset($_POST["submit"])) {
-   if ( empty(["role"]) || empty($_POST["name"]) || empty($_POST["password"])) {
+   if ( empty($_POST["role"]) || empty($_POST["name"]) || empty($_POST["password"])) {
         $error = " fields are required.";
     } else {
         // Define $username and $password

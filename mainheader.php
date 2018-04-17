@@ -74,6 +74,29 @@ else
 
 
     <body>
+        <!-- <header role="banner">
+            <nav id="navbar-primary" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-primary-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-responsive-collapse" id="navbar-primary-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#"><img class="office-logo" src="image/help2home.jpg" id="logo-navbar-middle" alt="Help2Home"></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header> -->
 
         <!-- Header -->
 
@@ -88,11 +111,11 @@ else
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand wow fadeInDownBig" href="index.php"><img class="office-logo" src="image/help2home.jpg" ></a>      
+                    <a class="navbar-brand" href="index.php"><img class="office-logo" src="image/help2home.png" ></a>
                 </div>
 
-                <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
-                    <ul class="nav navbar-nav pull-right">
+                <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse text-center">
+                    <ul class="nav navbar-nav pull-center">
                         <li class="<?php  setActiveClassMenu('index.php'); ?>">
                             <a href="index.php">Home</a>                        </li>
 <!--                                         <li>
@@ -117,7 +140,10 @@ else
                         } else {
                             ?>
                             <li class="<?php setActiveClassMenu('signup.php'); ?>">
-                                <a href="signup.php">Signup</a> 
+                                <a href="signup.php">Register</a> 
+                            </li>
+                            <li class="logo-space">
+                                <a href=""></a>
                             </li>
                             <li class="<?php setActiveClassMenu('login.php'); ?>" >
                                 <a href="login.php">Login</a>
@@ -127,7 +153,7 @@ else
                         ?>
                                  
                         <li class="<?php setActiveClassMenu('contact.php'); ?>">
-                            <a  href="feedback.php">FeedBack</a>
+                            <a  href="feedback.php">Contact</a>
                         </li>
                     </ul>         
                 </div>

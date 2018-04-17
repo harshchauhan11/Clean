@@ -5,7 +5,20 @@ $page_name="Home of Cleaning";
 include("mainheader.php");
 
 ?>
-    
+    <div class="banner">
+        <div class="row">
+            <div class="col col-lg-6 text-right">
+                <img src="image/device_pixel.png" width="300px">
+                <img src="image/screen.jpg" width="300px" class="screen">
+            </div>
+            <div class="col col-lg-6">
+                <h1><big>W</big>e Serve at Best !</h1>
+                <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><br/>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+            </div>
+        </div>
+    </div>
         <!-- Begin #carousel-section -->
         <section id="carousel-section" class="section-global-wrapper"> 
             <div class="container-fluid-kamn">
@@ -22,7 +35,7 @@ include("mainheader.php");
                         <div class="carousel-inner" role="listbox">
                             <!-- Begin Slide 1 -->
                             <div class="item active">
-                                <img src="image/1.jpg"   height="400" width="800" alt="Image of first carousel">
+                                <!-- <img src="image/clean2.jpg" alt="Image of first carousel"> -->
                                 <div class="carousel-caption">
                                     <!--<h3 class="carousel-title hidden-xs" style="height: 250px;">EASY TO CUSTOMIZE</h3>-->
                                 <!--<p class="carousel-body">BEAUTIFUL \ CLEAN \ MINIMAL</p>-->
@@ -98,7 +111,7 @@ include("mainheader.php");
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="margin-bottom: 30px">
                                 <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
                                     
-                                    <img src='admin/<?php echo $row['path']; ?>' height='210' width='250'/>
+                                    <img src='admin/<?php echo $row['path']; ?>' />
                                     <h4 class="services-title"><?php echo $row['sname']; ?></h4>
 
                                     <p class="services-more"><a href="innerservice.php?o=<?php echo $row['id']; ?>">Find Out More</a></p>

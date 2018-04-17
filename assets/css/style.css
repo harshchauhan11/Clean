@@ -375,8 +375,50 @@ p.blog-text{
     margin-left: 21px;
 }
 
+#navbar-section {
+    /* background: #222 !important; */
+    /* background: transparent; */
+}
 .office-logo {
-  width: 130px;
+  width: 220px;
+  margin: 0 auto;
+  position: absolute;
+  left: 684px;
+  -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 1));
+  -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
+  filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+}
+.logo-space::before {
+    padding-left: 50px;
+}
+.logo-space {
+    width: 200px;
+}
+.pull-center {
+    /* max-width: 800px;
+  margin-right: auto;
+  margin-left: auto; */
+  display: inline-block;
+  float: none;
+  padding-right: 70px;
+}
+.navbar ul li a::before {
+    /* content: '- '; */
+    /* color: #333; */
+}
+.navbar ul li a::after {
+    /* content: ' -'; */
+    /* color: #333; */
+}
+.navbar ul li {
+    padding: 0 20px;
+}
+.navbar ul li a {
+    color: #000 !important;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 1.2em;
 }
 
 @media (max-width: 768px){ 
@@ -479,13 +521,16 @@ p.blog-text{
 }
 .services-group{
   padding: 5px;
-  background:#061F20;
-  color: white;
+  /* background:#061F20; */
+  /* color: white; */
   margin: 10px;
   border-radius: 20px;
 }
 .services-group img {
-    border-radius: 10px;
+    height: 180px;
+    /* width: 50px; */
+    /* border-radius: 200px; */
+    padding: 20px;
     margin-top: 20px;
 }
 .service-icon{
@@ -1168,3 +1213,35 @@ footer h3 {
     border-radius: 3px;
     border: 1px solid #ccc;
 }
+
+
+  .banner {
+      position: absolute;
+      top: 0;
+      height: 800px;
+      width: 100%;
+    background: url(../../image/clean21_white2.jpg) top center / cover no-repeat;
+  }
+  .banner .col {
+      /* margin-left: 400px; */
+      margin-top: 200px;
+  }
+  .banner h1 {
+    color: #CF000F;
+  }
+  .banner p {
+      width: 250px;
+      margin-top: 40px;
+      font-size: 1.2em;
+      letter-spacing: 2px;
+      color: #000;
+  }
+  .screen {
+      width: 210px;
+      position: absolute;
+      top: 47px;
+      right: 95px;
+  }
+  .section-global-wrapper {
+      min-height: 700px;
+  }
