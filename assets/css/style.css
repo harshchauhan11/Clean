@@ -383,7 +383,8 @@ p.blog-text{
   width: 220px;
   margin: 0 auto;
   position: absolute;
-  left: 684px;
+  /* left: 684px; */
+  left: 41%;
   -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
   filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 1));
   -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
@@ -418,7 +419,7 @@ p.blog-text{
     color: #000 !important;
     font-weight: 500;
     letter-spacing: 2px;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 @media (max-width: 768px){ 
@@ -1218,13 +1219,14 @@ footer h3 {
   .banner {
       position: absolute;
       top: 0;
-      height: 800px;
+      height: 700px;
       width: 100%;
+      overflow: hidden;
     background: url(../../image/clean21_white2.jpg) top center / cover no-repeat;
   }
   .banner .col {
       /* margin-left: 400px; */
-      margin-top: 200px;
+      margin-top: 150px;
   }
   .banner h1 {
     color: #CF000F;
@@ -1243,5 +1245,5 @@ footer h3 {
       right: 95px;
   }
   .section-global-wrapper {
-      min-height: 700px;
+      min-height: 600px;
   }
