@@ -1,7 +1,7 @@
 <?php ob_start(); include("admin/conn.php");?>
 <?php 
 
-$page_name="Home of Cleaning";
+$page_name="Help2Home - Home of Cleaning";
 include("mainheader.php");
 
 ?>
@@ -102,16 +102,21 @@ include("mainheader.php");
                 $result = mysqli_query($conn, $sql);
                 //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 if (mysqli_num_rows($result) > 0) {
+                    $i = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
+                        if($i % 2 == 0)
+                            $fade = "fadeInUp";
+                        else
+                            $fade = "fadeInDown";
                         //while ($row = mysqli_fetch_array($result)) {
                         ?>
 
                         <!-- Begin Services Row 1 -->
                         
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="margin-bottom: 30px">
-                                <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
+                                <div class="services-group" data-wow-offset="40">
                                     
-                                    <img src='admin/<?php echo $row['path']; ?>' />
+                                    <img src='admin/<?php echo $row['path']; ?>' class="wow animated <?php echo $fade; ?>" />
                                     <h4 class="services-title"><?php echo $row['sname']; ?></h4>
 
                                     <p class="services-more"><a href="innerservice.php?o=<?php echo $row['id']; ?>">Find Out More</a></p>
@@ -119,6 +124,7 @@ include("mainheader.php");
                                 </div>
                             </div>
                             <?php
+                            $i++;
                         }
                     }
                     ?>  
