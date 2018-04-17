@@ -28,11 +28,13 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
   <link href="admin/css/font-awesome.min.css" rel="stylesheet" />
   <!-- Custom styles -->
   <link href="admin/css/style.css" rel="stylesheet">
+  <link href="js/calendar.css" rel="stylesheet">
   <link href="admin/css/style-responsive.css" rel="stylesheet" />
   <link href="js/fontawesome-stars-o.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
   <script src="js/jquery.barrating.min.js" type="text/javascript"></script>
+  <script src="js/jquery-calendar.min.js"></script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -217,6 +219,17 @@ echo   date("Y/m/d") . "<br>";
                   <ul>
                     <li class="active text-center">
                       <i class="fa fa-tachometer fa-2x"> </i>
+                      <ul class="dropdown-menu text-left" role="menu">
+                          <li><h5>Work Calendar</h5></li>
+                          <li class="divider"></li>
+                          <li class="notification-box">
+                              <div class="row">
+                                <div class="col-lg-12 col-sm-12 text-center">
+                                  <div id="calendar"></div>
+                                </div>
+                              </div>
+                          </li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -250,6 +263,7 @@ echo   date("Y/m/d") . "<br>";
               <div class="panel-body">
                 <div class="tab-content">
                   <div id="recent-activity" class="tab-pane active">
+                    <div id="calendar"></div>
                     <div class="profile-activity">
                     <?php
                     $sql = "SELECT *, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = ".$sessio_data['id']." AND status = 'ACCEPTED' ORDER BY work_time_id";
@@ -419,6 +433,15 @@ echo   date("Y/m/d") . "<br>";
 <script>
     
     $(document).ready(function() {
+      var events = [
+        {start: '2018-04-19', end: '2018-04-19', summary: "Booking #1, Timing : 8 to 10 AM", mask: true}, 
+        {start: '2018-04-24', end: '2018-04-24', summary: "Booking #2", mask: true}
+      ];
+      $('#calendar').calendar({
+        events: events,
+        color: 'blue'
+      });
+
       var $r = $("#rate").val();
       $('.rating').barrating({
         theme: 'fontawesome-stars-o',
