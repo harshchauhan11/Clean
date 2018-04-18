@@ -19,9 +19,11 @@ include "admin/conn.php";
 $user_id = $_GET['uid'];
 $worker_id = 0;
 $time = $_GET['time'];
+$date = $_GET['date'];
 $inner_id = $_GET['inner_id'];
 $amount = $_GET['final_amount'];
 
+// echo $date;
 // echo $user_id . "<br>";
 // echo $worker_id . "<br>";
 // echo $time . "<br>";

@@ -184,7 +184,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="form-inline">
                     <div class="col-md-4">
                         <div class="form-group col-lg-6">
-                            <input id="datepicker" onchange="checkDate(event)" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" >
+                            <input name="date" id="datepicker" onchange="checkDate(event)" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" >
                         </div>
                         <!-- <div class="form-group col-lg-4">
                             <select name="year" id="year" class="form-control">

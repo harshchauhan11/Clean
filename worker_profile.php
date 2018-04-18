@@ -266,7 +266,7 @@ echo   date("Y/m/d") . "<br>";
                     <div id="calendar"></div>
                     <div class="profile-activity">
                     <?php
-                    $sql = "SELECT *, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = ".$sessio_data['id']." AND status = 'ACCEPTED' ORDER BY work_time_id";
+                    $sql = "SELECT *, (SELECT phone FROM signup WHERE id = user_id) AS user_phone, (SELECT address FROM signup WHERE id = user_id) AS user_address, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = ".$sessio_data['id']." AND status = 'ACCEPTED' ORDER BY work_time_id";
                     $result = mysqli_query($conn, $sql);
                 
                     if (mysqli_num_rows($result) > 0) {
@@ -275,6 +275,8 @@ echo   date("Y/m/d") . "<br>";
                       <div class="act-time card">
                         Service: <?php echo $row['service']; ?><br/>
                         Customer: <?php /*echo $row['user_prefix'];*/ ?> <?php echo $row['user_name']; ?><br/>
+                        Address: <?php echo $row['user_address']; ?><br/>
+                        Phone: <?php echo $row['user_phone']; ?><br/><br/>
                         Timing: <?php echo $row['work_time']; ?>
                       </div>
                       <?php
