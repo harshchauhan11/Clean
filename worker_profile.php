@@ -34,7 +34,13 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
   <script src="js/jquery.barrating.min.js" type="text/javascript"></script>
-  <script src="js/jquery-calendar.min.js"></script>
+  <!-- <script src="js/jquery-calendar.min.js"></script> -->
+  <link rel="stylesheet" href="js/mini-event-calendar.css">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+</script> -->
+<script src="js/mini-event-calendar.min.js"></script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -435,11 +441,27 @@ echo   date("Y/m/d") . "<br>";
 <script>
     
     $(document).ready(function() {
-      var events = [
-        {start: '2018-04-19', end: '2018-04-19', summary: "Booking #1, Timing : 8 to 10 AM", mask: true}, 
-        {start: '2018-04-24', end: '2018-04-24', summary: "Booking #2", mask: true}
-      ];
-      $('#calendar').calendar({
+      var $wid = <?php echo $sessio_data['id']; ?>;
+      var events;
+      // var $date = moment('2018-03-01 00:00:00', 'YYYY-MM-DD hh:mm:ss').unix();
+      // alert(new Date('2018.03.01').getTime() / 1000);
+      $.post("events.php", {wid: $wid}, function(result) {
+        events = result.trim();
+        alert(events);
+      });
+      // var events = [
+      //   {
+      //     title: "Event Title 1",   
+      //     date: new Date('2018-04-21'),
+      //     link: "jqueryscript.net"
+      //   }, 
+      //   {
+      //     title: "Event Title 2",
+      //     date: 1519852600000,
+      //     link: "jqueryscript.net"
+      //   }
+      // ];
+      $('#calendar').MEC({
         events: events,
         color: 'blue'
       });
