@@ -4,17 +4,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h3><i class="fa fa-external-link"></i> SERVICES:</h3> 
-                        <p> <a href="index.php"> HOME CLEANING & CARE </a></p>
-                        <p> <a href="signup.php"> HOME APPLIANCE </a></p>
-                        <p> <a href="login.php"> OUTDOOR </a></p>
-                        <p> <a href="#"> APPLY AS WORKER</a></p>
+                        <p> <a href="index.php"> HOME CLEANING </a></p>
+                        <p> <a href="index.php"> HOME APPLIANCE </a></p>
+                        <p> <a href="index.php"> OUTDOOR </a></p>
+                        <p> <a href="signup.php"> APPLY AS WORKER</a></p>
                     </div>
                     <div class="col-md-4">
                         <h3><i class="fa fa-external-link"></i> Links</h3>
                         <p> <a href="index.php"> HOME </a></p>
-                        <p> <a href="signup.php"> SIGNUP </a></p>
+                        <p> <a href="signup.php"> REGISTER </a></p>
                         <p> <a href="login.php"> LOGIN </a></p>
-                        <p> <a href="feedback.php"> FEEDBACK</a></p>
+                        <p> <a href="feedback.php"> CONTACT</a></p>
                         
                     </div>
                     <div class="col-md-4">

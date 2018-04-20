@@ -102,7 +102,7 @@ if (isset($_GET['o']))
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
 
-                                <img src='admin\<?php echo $row['path']; ?>' height='210' width='260'/>
+                                <img src='admin\<?php echo $row['path']; ?>' />
                                 <h4 class="services-title"><?php echo $row['i_sname']; ?></h4>
                                 
                                   <a href= "service_booking.php?inner_id=<?php echo $row['id']; ?>"><h5>GO </h5></a>
