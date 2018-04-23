@@ -1,13 +1,13 @@
-<?php ob_start(); include("admin/conn.php"); include("timeago.php"); ?>
+<?php ob_start();include "admin/conn.php";include "timeago.php";?>
 <!DOCTYPE html>
-<?php 
+<?php
 
-$page_name="Home of Cleaning";
-if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
-  // echo $_SESSION["userdata"]["role"];
-  $sessio_data=$_SESSION["userdata"];
+$page_name = "Home of Cleaning";
+if (isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
+    // echo $_SESSION["userdata"]["role"];
+    $sessio_data = $_SESSION["userdata"];
     // include("mainheader.php");
-?>
+    ?>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,11 +36,11 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
   <script src="js/jquery.barrating.min.js" type="text/javascript"></script>
   <!-- <script src="js/jquery-calendar.min.js"></script> -->
   <link rel="stylesheet" href="js/mini-event-calendar.css">
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous">
 </script> -->
-<script src="js/mini-event-calendar.min.js"></script>
+<script src="js/mini-event-calendar.js"></script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
   <!--[if lt IE 9]>
@@ -65,35 +65,35 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
         <div class="row">
           <div class="col-lg-12">
             <!--<h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>-->
-            
-          
+
+
                     <ul class="nav navbar-nav pull-right">
                         <?php
-                      if (isset($sessio_data["id"]) || isset($sessio_data['name']) || isset($sessio_data['email'])) {
-                            ?>
+if (isset($sessio_data["id"]) || isset($sessio_data['name']) || isset($sessio_data['email'])) {
+        ?>
                             <li>
                                 <a href="#">Welcome, <?php echo $sessio_data['name']; ?></a>
                             </li>
-                            <li class="<?php setActiveClassMenu('logout.php'); ?>">
+                            <li class="<?php setActiveClassMenu('logout.php');?>">
                                 <a href="logout.php">Logout</a>
                             </li>
                             <?php
-                        } else {
-                            ?>
-                            <li class="<?php setActiveClassMenu('signup.php'); ?>">
+} else {
+        ?>
+                            <li class="<?php setActiveClassMenu('signup.php');?>">
                                 <a href="signup.php">Signup</a>
                             </li>
-                            <li class="<?php setActiveClassMenu('login.php'); ?>" >
+                            <li class="<?php setActiveClassMenu('login.php');?>" >
                                 <a href="login.php">Login</a>
                             </li>
                             <?php
-                        }
-                        ?>          
-                    </ul>         
+}
+    ?>
+                    </ul>
                 </div>
           </div>
         </div>
-          
+
           <div class="row">
           <!-- profile-widget -->
           <div class="col-lg-12">
@@ -111,9 +111,9 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
                   <h2 style="text-transform: capitalize">Hello, <b><?php echo $sessio_data['name']; ?></b> !</h2>
                   <p><?php echo $sessio_data['email']; ?></p>
                   <?php
-                  $rating = "SELECT COALESCE(AVG(rating),0) AS rating FROM ratings WHERE worker_id = " . $sessio_data['id'];
-                  $rating_result = mysqli_query($conn, $rating);
-                  ?>
+$rating = "SELECT COALESCE(AVG(rating),0) AS rating FROM ratings WHERE worker_id = " . $sessio_data['id'];
+    $rating_result = mysqli_query($conn, $rating);
+    ?>
                   <input type="hidden" id="rate" name="rate" value="" />
                   <select class="rating" data-id="rate<?php echo $sessio_data['id']; ?>">
                                 <option value="1">1</option>
@@ -122,14 +122,14 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select><br/>
-                            <?php 
-                                if (mysqli_num_rows($rating_result) > 0) {
-                                    while($rating_row = mysqli_fetch_assoc($rating_result)) {
-                                        // echo json_encode($sessio_data['id'], JSON_HEX_TAG);
-                                        // echo json_encode($rating_row['rating'], JSON_HEX_TAG);
+                            <?php
+if (mysqli_num_rows($rating_result) > 0) {
+        while ($rating_row = mysqli_fetch_assoc($rating_result)) {
+            // echo json_encode($sessio_data['id'], JSON_HEX_TAG);
+            // echo json_encode($rating_row['rating'], JSON_HEX_TAG);
 
-                                ?>
-                                        
+            ?>
+
                                         <script type="text/javascript">
                                         {
                                             $(document).ready(function() {
@@ -146,15 +146,15 @@ if(isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
                                         }
                                         </script>
                                 <?php
-                                    }
-                                }
-                                ?>
+}
+    }
+    ?>
 <!--                 <p><i class="fa fa-twitter">jenifertweet</i></p>-->
                   <h6>
-                      <span><i class="icon_clock_alt"></i><?php echo  date("h:i:sa");?></span>
+                      <span><i class="icon_clock_alt"></i><?php echo date("h:i:sa"); ?></span>
                                     <span><i class="icon_calendar"></i><?php
-echo   date("Y/m/d") . "<br>";
-?></span>
+echo date("Y/m/d") . "<br>";
+    ?></span>
                                     <!--<span><i class="icon_pin_alt"></i>NY</span>-->
                                 </h6>
                 </div>
@@ -167,30 +167,30 @@ echo   date("Y/m/d") . "<br>";
                   </ul>
                 </div>
                 <?php
-                        $sql = "SELECT *, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = ".$sessio_data['id']." AND status = 'PENDING'";
-                        $result = mysqli_query($conn, $sql);
-                
-                        if (mysqli_num_rows($result) > 0) {
-                        ?>
+$sql = "SELECT *, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = " . $sessio_data['id'] . " AND status = 'PENDING'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        ?>
                 <div class="col-lg-1 col-sm-1 follow-info notify_icons redbg">
                   <ul>
                     <li class="active text-center">
                       <div class="btn-group show-on-hover">
                       <?php
-                          echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> <span>'.mysqli_num_rows($result).'</span></i> <span class="caret"></span>';
-                          echo '<ul class="dropdown-menu text-left" role="menu">';
-                          echo '<li><h5>Notifications</h5></li>';
-                          echo '<li class="divider"></li>';
-                          while ($row = mysqli_fetch_assoc($result)) {
-                          ?>
+echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> <span>' . mysqli_num_rows($result) . '</span></i> <span class="caret"></span>';
+        echo '<ul class="dropdown-menu text-left" role="menu">';
+        echo '<li><h5>Notifications</h5></li>';
+        echo '<li class="divider"></li>';
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
                           <li class="notification-box gray-box2">
                               <div class="row">
                                 <div class="col-lg-2 col-sm-3 text-center">
                                   <img src="image/home.png" width="40px" class="w-50 rounded-circle">
-                                </div>    
+                                </div>
                                 <div class="col-lg-7 col-sm-6 auto-wrap">
                                   <strong class="text-danger">New Service Request</strong>
-                                  <div><?php /*echo $row['user_prefix'];*/ ?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
+                                  <div><?php /*echo $row['user_prefix'];*/?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
                                   <small class="text-info"><?php echo time_ago($row['request_date']); ?></small>
                                 </div>
                                 <div class="col-lg-3 col-sm-2 text-center">
@@ -200,27 +200,27 @@ echo   date("Y/m/d") . "<br>";
                               </div>
                           </li>
                           <?php
-                          }
-                          echo '</ul>';
-                          ?>
+}
+        echo '</ul>';
+        ?>
                           </div>
                     </li>
                   </ul>
                 </div>
                 <?php
-                        } else {
-                          echo '<div class="col-lg-1 col-sm-1 follow-info notify_icons">
+} else {
+        echo '<div class="col-lg-1 col-sm-1 follow-info notify_icons">
                           <ul>
                             <li class="active text-center">
                               <div class="btn-group show-on-hover">';
-                          echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> </i> <span class="caret"></span>';
-                          echo '</div>
+        echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="dropdown"> </i> <span class="caret"></span>';
+        echo '</div>
                           </li>
                         </ul>
                       </div>';
-                        }
-                        ?>
-                      
+    }
+    ?>
+
                 <div class="col-lg-1 col-sm-1 follow-info notify_icons">
                   <ul>
                     <li class="active text-center">
@@ -271,30 +271,48 @@ echo   date("Y/m/d") . "<br>";
                   <div id="recent-activity" class="tab-pane active">
                     <div id="calendar"></div>
                     <div class="profile-activity">
+                      <div id="tasks" class="text-center">
+                        <!-- <div class="row taskTitle">
+                          <h3><b>Tasks on <?php echo time_ago('2018-03-23'); ?></b></h3>
+                        </div>
+                        <div class="row taskRow">
+                          <div class="col-md-4 text-left">
+                              <big><b>Harshida</b></big><br/>
+                              Ahmedabad<br/>
+                              9090909090
+                          </div>
+                          <div class="col-md-4">
+                              Time: <br/><big><b>8 to 9 AM</b></big>
+                          </div>
+                          <div class="col-md-4">
+                              Service: <br/><big><b>Deep Cleaning</b></big>
+                          </div>
+                        </div> -->
+                      </div>
                     <?php
-                    $sql = "SELECT *, (SELECT phone FROM signup WHERE id = user_id) AS user_phone, (SELECT address FROM signup WHERE id = user_id) AS user_address, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = ".$sessio_data['id']." AND status = 'ACCEPTED' ORDER BY work_time_id";
-                    $result = mysqli_query($conn, $sql);
-                
-                    if (mysqli_num_rows($result) > 0) {
-                      while ($row = mysqli_fetch_assoc($result)) {
-                      ?>
+$sql = "SELECT *, (SELECT phone FROM signup WHERE id = user_id) AS user_phone, (SELECT address FROM signup WHERE id = user_id) AS user_address, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = " . $sessio_data['id'] . " AND status = 'ACCEPTED' ORDER BY work_time_id";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
                       <div class="act-time card">
                         Service: <?php echo $row['service']; ?><br/>
-                        Customer: <?php /*echo $row['user_prefix'];*/ ?> <?php echo $row['user_name']; ?><br/>
+                        Customer: <?php /*echo $row['user_prefix'];*/?> <?php echo $row['user_name']; ?><br/>
                         Address: <?php echo $row['user_address']; ?><br/>
                         Phone: <?php echo $row['user_phone']; ?><br/><br/>
                         Timing: <?php echo $row['work_time']; ?>
                       </div>
                       <?php
-                      }
-                    }
-                    ?>  
+}
+    }
+    ?>
                     </div>
                   </div>
                   <!-- profile -->
                   <div id="profile" class="tab-pane">
                     <section class="panel">
-                      
+
                       <div class="panel-body bio-graph-info">
                         <h1>Bio Graph</h1>
                         <div class="row">
@@ -309,7 +327,7 @@ echo   date("Y/m/d") . "<br>";
                           </div>
                           <div class="bio-row">
                             <p><span>Mobile </span>:  <?php
-                            echo $sessio_data   ['phone']; ?></p>
+echo $sessio_data['phone']; ?></p>
                           </div>
                           <div class="bio-row">
                             <p><span>Qualification </span>:<?php echo $sessio_data['que']; ?></p>
@@ -320,7 +338,7 @@ echo   date("Y/m/d") . "<br>";
                             <div class="bio-row">
                             <p><span>Address </span>:<?php echo $sessio_data['address']; ?></p>
                           </div>
-                          
+
                         </div>
                       </div>
                     </section>
@@ -439,32 +457,44 @@ echo   date("Y/m/d") . "<br>";
     // $(".knob").knob();
   </script>
 <script>
-    
+    var $events = [];
     $(document).ready(function() {
+      $('a#calLink').click(function(e) {
+        e.preventDefault();
+        alert($(this).attr("href"));
+      });
       var $wid = <?php echo $sessio_data['id']; ?>;
-      var events;
+
       // var $date = moment('2018-03-01 00:00:00', 'YYYY-MM-DD hh:mm:ss').unix();
       // alert(new Date('2018.03.01').getTime() / 1000);
       $.post("events.php", {wid: $wid}, function(result) {
-        events = result.trim();
-        alert(events);
+        // let $events = result.trim();
+        populateCalendar(result.trim());
       });
-      // var events = [
-      //   {
-      //     title: "Event Title 1",   
-      //     date: new Date('2018-04-21'),
-      //     link: "jqueryscript.net"
-      //   }, 
-      //   {
-      //     title: "Event Title 2",
-      //     date: 1519852600000,
-      //     link: "jqueryscript.net"
-      //   }
-      // ];
-      $('#calendar').MEC({
-        events: events,
-        color: 'blue'
-      });
+      // alert($events);
+
+      var populateCalendar = function($events) {
+        var events = JSON.parse($events);
+        //   var events = [
+        //   {
+        //     "title": "Event Title 1",
+        //     "date": new Date('2018-04-21'),
+        //     "link": "jqueryscript.net"
+        //   },
+        //   {
+        //     "title": "Event Title 2",
+        //     "date": 1519852600000,
+        //     "link": "jqueryscript.net"
+        //   }
+        // ];
+        // alert(events);
+        $('#calendar').MEC({
+          events: events,
+          color: 'blue'
+        });
+      }
+
+      
 
       var $r = $("#rate").val();
       $('.rating').barrating({
@@ -482,7 +512,7 @@ echo   date("Y/m/d") . "<br>";
             // alert($oid);
 
             $.post("booking.php", {oid: $oid, status: $status}, function(result) {
-                
+
                 if(result.trim() == 1) {
                   // alert("result = "+result);
                   // alert($element);

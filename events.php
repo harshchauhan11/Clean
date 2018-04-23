@@ -15,16 +15,17 @@ echo $amount . "<br>";
 */
 
 
-$insert_sql = "SELECT * FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED';";
+$insert_sql = "SELECT COUNT(*) AS tasks, date(booking_date) AS booking_date FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED' GROUP BY DATE(booking_date);";
 $result = $conn->query($insert_sql);
 if (mysqli_num_rows($result) > 0) {
+    $list = array();
     while($row = mysqli_fetch_assoc($result)) {
-        $list = array();
-        $d = new DateTime($row['booking_date']);
-        // $d->format('Y-m-d')
-        $list[] = array('title' => 'Event #1', 'date' => $d->format('Y-m-d'), 'link' => 'link url');
+        
+        // $d = new DateTime($row['booking_date']);
+        // $list[] = array('title' => 'Event #1', 'date' => $d->format('Y-m-d'), 'link' => 'link url');
+        $list[] = array('title' => "You have " . $row['tasks'] . " Tasks on " . $row['booking_date'], 'date' => $row['booking_date'], 'link' => 'tasks.php?wid='.$wid.'&date='.$row['booking_date']);
         // echo json_encode(array($arr));
-        echo json_encode($list);
     }
+    echo json_encode($list);
 }
 ?>

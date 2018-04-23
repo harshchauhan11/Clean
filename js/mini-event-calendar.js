@@ -123,8 +123,15 @@
 		function showEvent(event){
 			if(event && event !== null && event !== undefined){
 				event_title.text(event.title);
-				events_link.text("VIEW EVENT");
+				events_link.text("VIEW TASKS");
 				events_link.attr("href", event.link);
+				events_link.click(function(e) {
+					e.preventDefault();
+					// alert($(this).attr("href"));
+					$.post(event.link, function(result) {
+						$("#tasks").html(result.trim());
+					});
+				  });
 			}else{
 				event_title.text("No events on this day.");
 				events_link.text("ALL EVENTS");
