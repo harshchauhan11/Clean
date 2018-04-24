@@ -1,0 +1,14 @@
+create table worker_services (
+   id INT NOT NULL AUTO_INCREMENT,
+   worker_id INT NOT NULL,
+   inner_service_id INT NOT NULL,
+   PRIMARY KEY ( id ),
+   CONSTRAINT FK_worker_services_signup FOREIGN KEY (worker_id) REFERENCES signup(id),
+   CONSTRAINT FK_worker_services_inner_service FOREIGN KEY (inner_service_id) REFERENCES inner_service(id)
+);
+
+
+insert into worker_services (worker_id, inner_service_id) select id,service from signup where role='Worker';
+
+
+
