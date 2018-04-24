@@ -30,7 +30,7 @@ $amount = $_GET['final_amount'];
 // echo $inner_id . "<br>";
 // echo $amount . "<br>";
 
-$sql = "SELECT * FROM signup where service = " . $inner_id . " AND id IN (SELECT worker_id FROM worker_timing WHERE work_time_id = " . $time . ") AND id NOT IN (SELECT worker_id FROM orders WHERE work_time_id = " . $time . " AND inner_service_id = " . $inner_id . " AND user_id = " . $user_id . ");";
+$sql = "SELECT * FROM signup where id IN (SELECT worker_id FROM worker_services WHERE inner_service_id = " . $inner_id . ") AND id IN (SELECT worker_id FROM worker_timing WHERE work_time_id = " . $time . ") AND id NOT IN (SELECT worker_id FROM orders WHERE work_time_id = " . $time . " AND inner_service_id = " . $inner_id . " AND user_id = " . $user_id . ");";
 $result = mysqli_query($conn, $sql);
 //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 if (mysqli_num_rows($result) > 0) {

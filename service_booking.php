@@ -250,6 +250,56 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
             <div class="form-group">
+                <label class="col-md-4 control-label" for="title">Service Duration</label>
+                <div class="form-inline">
+                    <div class="col-md-4">
+                        <div class="form-group col-lg-4">
+                            <select name="durationCount" id="durationCount" onchange="" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>      
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <select name="duration" id="duration" onchange="" class="form-control" size="1">
+                                <option value="hours">Hours</option>
+                                <option value="days">Days</option>
+                                <option value="months">Months</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-4 control-label" for="time">Time   </label>
 
                 <div class="col-md-4" >
@@ -406,6 +456,28 @@ if (mysqli_num_rows($result) > 0) {
             pastDate = false;
     }
     $(document).ready(function() {
+        $("#duration").change(function() {
+            if(isNaN($("#datepicker").val())) {
+                var $start = new Date($("#datepicker").val()),
+                    $end = "",
+                    count = parseInt($("#durationCount").val(), 10);
+                    // alert($start);
+                if($(this).val() == "hours") {
+                    $end = $start;
+                } else if($(this).val() == "days") {
+                    if(!isNaN($start.getTime())){
+                        alert($start.toISOString().substr(0,10));
+                        $start.setDate($start.getDate() + (count-1));
+                        $end = $start;
+                        alert($end.toISOString().substr(0,10));
+                    }
+                } else if($(this).val() == "months") {
+
+                }
+                    // alert(3);
+            }
+        });
+
         $('.rating').barrating({
         theme: 'fontawesome-stars-o',
         initialRating: -1
