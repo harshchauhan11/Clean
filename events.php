@@ -15,7 +15,7 @@ echo $amount . "<br>";
 */
 
 
-$insert_sql = "SELECT COUNT(*) AS tasks, date(booking_date) AS booking_date FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED' GROUP BY DATE(booking_date);";
+$insert_sql = "SELECT COUNT(*) AS tasks, date(start_date) AS booking_date FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED' GROUP BY DATE(start_date);";
 $result = $conn->query($insert_sql);
 if (mysqli_num_rows($result) > 0) {
     $list = array();

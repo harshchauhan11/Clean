@@ -19,10 +19,11 @@ include "admin/conn.php";
 $user_id = $_GET['uid'];
 $worker_id = 0;
 $time = $_GET['time'];
-$date = $_GET['date'];
+$s_date = $_GET['start_date'];
 $inner_id = $_GET['inner_id'];
 $amount = $_GET['final_amount'];
 
+echo '<input type="hidden" name="s_date" id="s_date" value="' . $s_date .'" />';
 // echo $date;
 // echo $user_id . "<br>";
 // echo $worker_id . "<br>";
@@ -129,12 +130,15 @@ if (mysqli_num_rows($result) > 0) {
         $user_id = 0,
         $time = 0,
         $inner_id = 0,
-        $amount = 0;
+        $amount = 0,
+        $start_date = 0;
     $(document).ready(function() {
         $("#okBtn").click(function(e) {
+            // alert($start_date);
             // alert("wid = "+$wid);
-            $.post("hire.php", {uid: $user_id, wid: $wid, inner_id: $inner_id, time_id: $time, amount: $amount}, function(result){
-                // alert("result = "+result);
+            
+            $.post("hire.php", {uid: $user_id, wid: $wid, inner_id: $inner_id, time_id: $time, amount: $amount, start_date: $start_date}, function(result){
+                alert("result = "+result);
                 if(result.trim() == 1) {
                     // SUCCESS
                     alert("Your Service Request has been sent Successfully ! Worker need to accept it. \nWe will inform you shortly.");
@@ -147,6 +151,7 @@ if (mysqli_num_rows($result) > 0) {
                     location.reload();
                 }
             });
+            
         });
         $(".hireBtn").click(function(e) {
             e.preventDefault();
@@ -155,8 +160,9 @@ if (mysqli_num_rows($result) > 0) {
             $time = <?php echo $time; ?>;
             $inner_id = <?php echo $inner_id; ?>;
             $amount = <?php echo $amount; ?>;
+            $start_date = $("#s_date").val();
 
-            $.post("summary.php", {uid: $user_id, wid: $wid, inner_id: $inner_id, time_id: $time, amount: $amount}, function(result){
+            $.post("summary.php", {uid: $user_id, wid: $wid, inner_id: $inner_id, time_id: $time, amount: $amount, start_date: $start_date}, function(result){
                 $("#summary-body").html(result);
                 // if(result.trim() == 1) {
                 //     // SUCCESS

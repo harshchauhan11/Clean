@@ -5,6 +5,9 @@ include("timeago.php");
 // $uid = $_POST['uid'];
 $wid = $_GET['wid'];
 $date = $_GET['date'];
+date_default_timezone_set('Asia/Kolkata');
+$today = date("Y-m-d");
+// echo $today;
 // $inner_id = $_POST['inner_id'];
 // $amount = $_POST['amount'];
 
@@ -16,12 +19,16 @@ echo $inner_id . "<br>";
 echo $amount . "<br>";
 */
 
-
-$insert_sql = "SELECT *, (SELECT phone FROM signup WHERE id = user_id) AS user_phone, (SELECT address FROM signup WHERE id = user_id) AS user_address, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED' AND DATE(booking_date) = '$date';";
+$title = "";
+$insert_sql = "SELECT *, (SELECT phone FROM signup WHERE id = user_id) AS user_phone, (SELECT address FROM signup WHERE id = user_id) AS user_address, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = $wid AND status = 'ACCEPTED' AND DATE(start_date) = '$date';";
 $result = $conn->query($insert_sql);
 if (mysqli_num_rows($result) > 0) {
     echo '<div class="row taskTitle">';
-    echo '<h3><b>Tasks on ' . time_ago($date) . '</b></h3>';
+    if($today == $date)
+        $title = "Today's Tasks";
+    else
+        $title = "Tasks on " . date_format(date_create($date), "j M, Y");
+    echo '<h3><b>' . $title . '</b></h3>';
     echo '</div>';
     while($row = mysqli_fetch_assoc($result)) {
         ?>
@@ -48,5 +55,13 @@ if (mysqli_num_rows($result) > 0) {
                     </div> -->
         <?php
     }
+} else {
+    echo '<div class="row taskTitle">';
+    if($today == $date)
+        $title = "Today";
+    else
+        $title = date_format(date_create($date), "j M, Y");
+    echo '<h3><b>No Tasks Available For '.$title.' !</b></h3>';
+    echo '</div>';
 }
 ?>

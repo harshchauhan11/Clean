@@ -5,6 +5,10 @@ $uid = $_POST['uid'];
 $wid = $_POST['wid'];
 $inner_id = $_POST['inner_id'];
 $amount = $_POST['amount'];
+$start_date = $_POST['start_date'];
+
+// echo $start_date;
+
 ?>
 <link href="admin/css/font-awesome.min.css" rel="stylesheet" />
 <script type="application/javascript">
@@ -89,6 +93,10 @@ if (mysqli_num_rows($result1) > 0 && mysqli_num_rows($result2) > 0 && mysqli_num
                             <tr>
                                 <td class="col-lg-4">Service You're Looking :</td>
                                 <td class="col-lg-8 text-left"><b><?php echo $row2['i_sname']; ?></b></td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">Your Preferred Date :</td>
+                                <td class="col-lg-8 text-left"><?php echo date_format(date_create($start_date), "j M, Y"); ?></td>
                             </tr>
                             <tr>
                                 <td class="col-lg-4">Your Preferred Timing :</td>

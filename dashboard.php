@@ -107,7 +107,7 @@ include "mainheader.php";
                         </div>
                         <?php
                                 // $sql = "SELECT *, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE user_id = ".$sessio_data['id']." AND (status = 'REJECTED' OR status = 'ACCEPTED') ORDER BY booking_date DESC";
-                                $sql = "SELECT r.*, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service, inner_service_id, booking_date, o.status AS order_status FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY booking_date DESC";
+                                $sql = "SELECT r.*, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service, inner_service_id, booking_date, start_date, o.status AS order_status FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY start_date DESC";
                                 $result = mysqli_query($conn, $sql);
                                 // echo $notif_result;
                                 
@@ -151,7 +151,7 @@ include "mainheader.php";
                                             </div>    
                                             <div class="col-lg-7 col-sm-6 auto-wrap">
                                             <!-- <strong class="text-danger">New Service Request</strong> -->
-                                            <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has <?php echo $row['order_status']; ?> your request for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
+                                            <div><?php echo $row['user_prefix']; ?> <?php echo $row['user_name']; ?> has <?php echo $row['order_status']; ?> your request for <?php echo $row['service']; ?> Service booked for <br/>Date : <b><?php echo date_format(date_create($row['start_date']), "j M, Y"); ?></b> at <br/>Time : <b><?php echo $row['work_time']; ?></b></div>
                                             <small class="text-info"><?php echo time_ago($row['booking_date'] ); ?></small>
                                             </div>
                                             <div class="col-lg-3 col-sm-2 text-center">
@@ -292,7 +292,7 @@ include "mainheader.php";
                 }
 
                 //$sql = "SELECT o.*,s.* FROM orders o INNER JOIN signup s ON s.id = o.user_id WHERE o.user_id = $uid";
-                $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='ACCEPTED' ORDER BY work_time_id";
+                $sql = "SELECT *, (SELECT i_sname FROM inner_service i WHERE i.id = o.inner_service_id) AS inner_service FROM orders o INNER JOIN signup s ON s.id = o.worker_id INNER JOIN work_time t ON t.id = o.work_time_id WHERE user_id = ".$sessio_data['id']." AND status='ACCEPTED' ORDER BY start_date DESC";
                 $result = mysqli_query($conn, $sql);
                 
                 echo '<ul class="list-group">';
@@ -313,7 +313,7 @@ include "mainheader.php";
                         ?>
                         <li class="list-group-item row">
                             <div class="col col-lg-12 col-xs-12 daterow <?php echo $i==0?'daterow-round':''; ?>">
-                                <?php echo 'Booking Date : ' . /*date('d F Y', strtotime($row['booking_date'])) .', '. */time_ago($row['booking_date']); ?>
+                                <?php echo 'Booking Date : ' . /*date('d F Y', strtotime($row['booking_date'])) .', '. */time_ago($row['start_date']); ?>
                             </div>
                             <div class="col col-lg-1 col-xs-2">
                                 <img src="<?php echo $worker_pic; ?>" width="70px" class="worker_pic" />

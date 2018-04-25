@@ -190,7 +190,7 @@ echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="d
                                 </div>
                                 <div class="col-lg-7 col-sm-6 auto-wrap">
                                   <strong class="text-danger">New Service Request</strong>
-                                  <div><?php /*echo $row['user_prefix'];*/?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service at <?php echo $row['work_time']; ?></div>
+                                  <div><?php /*echo $row['user_prefix'];*/?> <?php echo $row['user_name']; ?> has requested you for <?php echo $row['service']; ?> Service for <br/>Date : <b><?php echo date_format(date_create($row['start_date']), "j M, Y"); ?></b> at <br/>Time : <b><?php echo $row['work_time']; ?></b></div>
                                   <small class="text-info"><?php echo time_ago($row['request_date']); ?></small>
                                 </div>
                                 <div class="col-lg-3 col-sm-2 text-center">
@@ -459,11 +459,26 @@ echo $sessio_data['phone']; ?></p>
 <script>
     var $events = [];
     $(document).ready(function() {
+      var $wid = <?php echo $sessio_data['id']; ?>;
+      // alert(new Date().toISOString().substr(0,10));
+      var currentTime = new Date();
+      var currentOffset = currentTime.getTimezoneOffset();
+      var ISTOffset = 330;
+      var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
+      var date = ISTTime.getDate(),
+          month = ((ISTTime.getMonth().length+1) === 1) ? (ISTTime.getMonth()+1) : '0' + (ISTTime.getMonth()+1),
+          year = ISTTime.getFullYear();
+      var todayDate = (year + "-" + month + "-" + date);
+
+      $.get("tasks.php", {wid: $wid, date: todayDate}, function(result) {
+        $("#tasks").html(result.trim());
+      });
+
+
       $('a#calLink').click(function(e) {
         e.preventDefault();
-        alert($(this).attr("href"));
+        // alert($(this).attr("href"));
       });
-      var $wid = <?php echo $sessio_data['id']; ?>;
 
       // var $date = moment('2018-03-01 00:00:00', 'YYYY-MM-DD hh:mm:ss').unix();
       // alert(new Date('2018.03.01').getTime() / 1000);
