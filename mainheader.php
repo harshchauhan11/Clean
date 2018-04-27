@@ -18,7 +18,8 @@ if(isset($_SESSION["userdata"]))
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="assets/css/font-awesome.min.css"> -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/style-projects.css">

@@ -8,8 +8,8 @@ include("mainheader.php");
     <div class="banner">
         <div class="row">
             <div class="col col-lg-6 text-right">
-                <img src="image/device_pixel.png" width="300px">
-                <img src="image/screen.jpg" width="300px" class="screen">
+                <!-- <img src="image/device_pixel.png" width="300px"> -->
+                <!-- <img src="image/screen.jpg" width="300px" class="screen"> -->
             </div>
             <div class="col col-lg-6">
                 <h1><big>W</big>e Serve at Best !</h1>

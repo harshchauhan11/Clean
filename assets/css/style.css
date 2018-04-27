@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Lato|Titillium+Web|Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Oswald|Tajawal:400,500,700,800|IBM+Plex+Sans:500|Lato:500,600,700|Titillium+Web|Fira+Sans');
 /*
 Theme Name:Office
 Theme URI:http://ThemeWagon.com/
@@ -16,7 +16,7 @@ License URI:http://www.gnu.org/licenses/gpl-2.0.html
 * ==========================================================================
 */
 body {
-    /* font-family: 'Titillium Web','Fira Sans','Playfair Display','Lato','IBM Plex Sans'; */
+    font-family: 'Oswald2','Tajawal','Titillium Web2','Fira Sans2','Playfair Display2','Lato2','IBM Plex Sans';
 }
 .btn-primary{
   margin-left: 20px;
@@ -474,8 +474,8 @@ p.blog-text{
 */
 .services-section {
   text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  /* padding-bottom: 50px; */
 }
 .services-section .services-header {
   margin-bottom: 50px;
@@ -548,7 +548,7 @@ p.blog-text{
 
 footer .widget h4 {
     margin-top: 20px;
-    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    /* font-family: 'Droid Sans', Helvetica, Arial, sans-serif; */
     font-size: 14px;
     text-transform: uppercase;
     text-shadow: 0 1px 0 rgba(255,255,255,.7);
@@ -562,14 +562,33 @@ footer .widget i {
     padding-right: 7px;
 }
 footer{
-   margin-top:40px;
-   padding: 20px; 
+   /* margin-top:40px; */
+   padding: 100px; 
    background: black;
+   border-top: 10px solid #009444;
+}
+footer p.tagline {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1px;
+}
+footer p {
+    font-weight: 500;
+}
+footer h1.we {
+    font-weight: 500;
+    color: #fff;
 }
 
 footer h3 {
-    color: #dadada;
+    font-weight: 500;
+    color: #444;
     margin-bottom: 20px;
+}
+footer a {
+    color: #00a79d;
+    /* color: #009444; */
 }
 
 .footer-contact{
@@ -579,15 +598,27 @@ footer h3 {
 
 /*Social Buttons */
 #social-icons{
-  font-size: 22px;
+  font-size: 2em;
 }
 
 #social-icons .btn-group {
-    color: #55CBD2;
+    /* color: #55CBD2; */
     margin-right: 15px;
 }
 #social-icons .btn-group:hover {
     color: #ffffff;
+}
+#social-icons .facebook {
+    color: #3b5998;
+}
+#social-icons .twitter {
+    color: #1da1f2;
+}
+#social-icons .insta {
+    color: #c32aa3;
+}
+#social-icons .google-plus {
+    color: #db4437;
 }
 
 .copyright {
@@ -1219,10 +1250,12 @@ footer h3 {
   .banner {
       position: absolute;
       top: 0;
-      height: 700px;
+      height: 780px;
       width: 100%;
       overflow: hidden;
-    background: url(../../image/clean21_white2.jpg) top center / cover no-repeat;
+      /* border-bottom: 20px double #00a79d; */
+    /* background: url(../../image/clean21_white2.jpg) top center / cover no-repeat; */
+    background: url(../../image/sofa_cleaning.jpg) top center / cover no-repeat;
   }
   .banner .col {
       /* margin-left: 400px; */
@@ -1239,11 +1272,12 @@ footer h3 {
       color: #000;
   }
   .screen {
+      display: none;
       width: 210px;
       position: absolute;
       top: 47px;
       right: 95px;
   }
   .section-global-wrapper {
-      min-height: 600px;
+      min-height: 650px;
   }
