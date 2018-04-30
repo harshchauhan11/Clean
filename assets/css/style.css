@@ -567,6 +567,9 @@ footer{
    background: black;
    border-top: 10px solid #009444;
 }
+.btn-success {
+    background: #009444 !important;
+}
 footer p.tagline {
     text-transform: uppercase;
     font-weight: 500;
@@ -590,6 +593,40 @@ footer a {
     color: #00a79d;
     /* color: #009444; */
 }
+.navbar-nav li.active a {
+    background: #00a79d !important;
+    /* color: #fff !important; */
+    font-weight: bold;
+}
+.navbar-nav li a:hover {
+    color: #009444 !important;
+    /* font-weight: 600; */
+    /* background: #000 !important; */
+}
+.form-horizontal {
+    width: 700px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
+    margin: 50px auto 20px auto;
+    background: rgba(255,255,255,.9);
+    box-shadow: 5px 2px 10px rgba(0,0,0,.3);
+}
+.form-control {
+    color: #000 !important;
+    font-weight: 500;
+    font-size: 1em;
+}
+hr {
+    border-top: 1px solid #ddd;
+}
+
+.main {
+    background: url(../../image/clean21.jpg) top center / 100% auto no-repeat fixed;
+}
+.select2-container {
+    width: 100% !important;
+}
+
 
 .footer-contact{
     color: white;

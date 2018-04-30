@@ -34,19 +34,18 @@ $page_name="My Feedback";
 include("mainheader.php");
 ?>
             
+<div class="main">
 <div class="container">
-    <div class="text-center">
-        <h1 class="nice">Feedback Form</h1>
-    </div>
     <form class="form-horizontal" method="post"
           action="feedback.php" onsubmit="return validate()" name="f1">
+          <div class="text-center">
+            <h1 class="nice">Feed<b>Back</b></h1>
+        </div><hr>
           <fieldset>
-                        <legend> Details</legend>
-        
         <div class="form-group">
             <label class="col-md-4 control-label" for="name">Name</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="name" onblur="alpha()" name="name" type="text" placeholder="Name" class="form-control input-md" pattern="[a-zA-Z]+" title="alphabates only" required>
                 <span class="help-block">Please type in your full name</span>
             </div>
@@ -57,7 +56,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="phone">Email</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="email" name="email" type="text" placeholder="Email" 
                        class="form-control input-md"  minlength="8"  required>
                 <span class="help-block">Enter your email</span>
@@ -67,7 +66,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="subject">Subject</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <textarea id="subject" name="subject" type="textarea" placeholder="subject" 
                           class="form-control input-md"  style="height: 100px; width: 100%;"  required></textarea>
                 <span class="help-block"></span>
@@ -79,8 +78,8 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
 
-            <div class="col-md-8">
-                <input type="submit" name="submit" class="btn btn-success" value="Submit" />
+            <div class="col-md-12 text-center">
+                <input type="submit" name="submit" class="btn btn-lg btn-success" value="SUBMIT" />
                 
             </div>
         </div>

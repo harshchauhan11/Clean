@@ -67,22 +67,23 @@ if (!isset($sessio_data['id'])) {
 $page_name=" My login";
 include("mainheader.php");
 ?>
+<div class="main">
 <div class="container">
-    <div class="text-center">
-        <h1 class="nice">Login Form</h1>
-    </div>
+    
     
     <form class="form-horizontal" method="post" action="login.php<?php if(isset($_GET['followup'])) { echo "?followup=".urlencode($_SERVER['REQUEST_URI']); } ?>">
-        
+    <div class="text-center">
+        <h1 class="nice">Sign<b><sup>In</sup></b></h1>
+    </div><hr>
         
         <fieldset>
-            <legend> Details</legend>
+            <!-- <legend> Details</legend> -->
          <div><h3> <?php  echo $error ?></h3></div>
          
                     <!-- Role input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="role">Login as</label>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <select class="form-control input-md" name='role'>
                                     <option value= "user">User</option>
                                     <option value= "worker">Worker</option>
@@ -95,7 +96,7 @@ include("mainheader.php");
             <div class="form-group">
                 <label class="col-md-4 control-label" for="email">Email</label>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input id="name" name="email" type="text" placeholder="Your Email Address" class="form-control input-md" required>
                                     <span class="help-block">Please type in your email address</span>
                 </div>
@@ -104,7 +105,7 @@ include("mainheader.php");
      <!-- Password input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Password</label>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input type="password" id="password" name="password" placeholder="Your Password" 
                            class="form-control input-md" required>
                             <span class="help-block">Password should be at least 4 characters</span>
@@ -114,11 +115,12 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
 
-            <div class="col-md-8">
-                <input type="submit" name="submit" class="btn btn-success" value="LOGIN" />
+            <div class="col-md-12 text-center">
+                <input type="submit" name="submit" class="btn btn-lg btn-success" value="LOGIN" />
             </div>
         </div>
     </form>
+</div>
 </div>
         
      

@@ -112,20 +112,21 @@ include("mainheader.php");
     });
 </script>
 
-
+<div class="main">
 <div class="container">
-    <div class="text-center">
-        <h1 class="nice">Signup Form</h1>
-    </div>
+    
     <form class="form-horizontal" method="post"
           action="signup.php" onsubmit="return validate()" name="f1">
+          <div class="text-center">
+            <h1 class="nice">Sign<b><sup>Up</sup></b></h1>
+          </div><hr>
           <fieldset>
-                        <legend> Details</legend>
+                        
         
         <div class="form-group">
             <label class="col-md-4 control-label" for="name">Name</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="name"  name="name" type="text" placeholder="Name" class="form-control input-md" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="alphabates only" required>
                 <span class="help-block">Please type in your full name</span>
             </div>
@@ -133,9 +134,9 @@ include("mainheader.php");
                         
                         <!-- Role input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="role">signup as</label>
+            <label class="col-md-4 control-label" for="role">SignUp As</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 
                 <input type="radio" name="role" value="User" onclick="javascript:hide();" > User<br>
                 <input type="radio" name="role" value="Worker" onclick="javascript:show();" > Worker
@@ -151,9 +152,9 @@ include("mainheader.php");
                    <div class="form-group">
             <label class="col-md-4 control-label" for="Service">Services</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
               
-                       <select class="form-control input-lg m-bot15" style="width:auto;" name='services[]' id="services" multiple="multiple">
+                       <select class="form-control input-md" style="width:auto;" name='services[]' id="services" multiple="multiple">
                             <?php
                             
                              $sql = "select * from outer_service";
@@ -193,10 +194,10 @@ include("mainheader.php");
                                 <div class="form-group">
             <label class="col-md-4 control-label" for="role">Gender</label>
 
-            <div class="col-md-4" >
+            <div class="col-md-6" >
                 
-                <input type="radio" name="gender" value="male"  >Male<br>
-                <input type="radio" name="gender" value="female" > Female
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female
 
                                           
                 <span class="help-block">please select any one.</span>
@@ -205,7 +206,7 @@ include("mainheader.php");
                        <div class="form-group">
             <label class="col-md-4 control-label" for="Email">Age</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="age" name="age" type="age" placeholder="age"
                        class="form-control input-md">
                 <span class="help-block">Please type in your age</span>
@@ -215,7 +216,7 @@ include("mainheader.php");
                               <div class="form-group">
             <label class="col-md-4 control-label" for="Email">Qualification</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="que" name="que" type="que" placeholder="Qualification"
                        class="form-control input-md">
                 <span class="help-block">Please type in your Qualification</span>
@@ -224,7 +225,7 @@ include("mainheader.php");
            
                   <div class="form-group">
             <label class="col-md-4 control-label" for="Service">Time</label>
-  <div class="col-md-4">
+  <div class="col-md-6">
  <?php
                             $sql = "select * from work_time";
                             $result = mysqli_query($conn, $sql);
@@ -258,7 +259,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="Email">Email</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="email" name="email" type="email" placeholder="Email"
                        class="form-control input-md" required>
                 <span class="help-block">Please type in your email</span>
@@ -268,7 +269,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="name"> Address</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="address" name="address" type="text" placeholder="Address" class="form-control input-md"
                        required="">
                 <span class="help-block">Please type in your  Address</span>
@@ -277,7 +278,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="area"> Area</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="area" name="area" type="text" placeholder="Area" class="form-control input-md"
                        required="">
                 <span class="help-block">Please type in your  Area</span>
@@ -288,7 +289,7 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="password">Phone</label>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="phone" name="phone" type="" placeholder="Phone number" onBlur="num()"
                        class="form-control input-md" maxlength="12" minlength="8"  pattern="^((\+){0,1}91(\s){0,1}(\-){0,1}(\s){0,1}){0,1}9[0-9](\s){0,1}(\-)8[0-9](\s){0,1}7[0-9](\s){0,1}{0,1}(\s){0,1}[1-9]{1}[0-9]{7}$" required>
                 <span class="help-block">Please provide your Mobile Number</span>
@@ -297,7 +298,7 @@ include("mainheader.php");
         <div class="form-group">
       <!-- Password-->
       <label class="col-md-4 control-label" for="password">Password</label>
-      <div class="col-md-4">
+      <div class="col-md-6">
           <input type="password" id="password" name="password" placeholder=""  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Choose secure password"
                 class="form-control input-md" required>
         <span class="help-block"></span>
@@ -307,7 +308,7 @@ include("mainheader.php");
     <div class="form-group">
       <!-- Password -->
       <label class="col-md-4 control-label"  for="password_confirm">Password (Confirm)</label>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <input type="password" id="confirm_password" name="confirm_password" placeholder="" 
                class="form-control input-md" required>
         <span class="help-block">Please confirm password</span>
@@ -322,8 +323,8 @@ include("mainheader.php");
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
 
-            <div class="col-md-8">
-                <input type="submit" name="submit" class="btn btn-success" value="Register" />
+            <div class="col-md-12 text-center">
+                <input type="submit" name="submit" class="btn btn-lg btn-success" value="REGISTER" />
                 
             </div>
         </div>
