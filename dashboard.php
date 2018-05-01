@@ -86,10 +86,11 @@ include "mainheader.php";
   <!-- <link href="admin/css/style.css" rel="stylesheet"> -->
   <!-- <link href="admin/css/style-responsive.css" rel="stylesheet" /> -->
 
+<div class="main">
 <div class="container">
     <div class="row middleHeader">
         <div class="col col-lg-12">
-            <div class="col col-lg-4 col-lg-offset-4 col-xs-12 middleHeader">
+            <div class="col col-lg-4 col-lg-offset-4 col-xs-12">
                 <h1 class="text-center">Your Dashboard</h1>
             </div>
             <div class="col-lg-4">
@@ -392,6 +393,8 @@ include "mainheader.php";
         </div>
     </div>
 </div>
+</div>
+
 <script>
     
     $(document).ready(function() {
@@ -400,6 +403,7 @@ include "mainheader.php";
 </script>
 
 <?php
+include "mainfooter.php";
 } else {
     header("Location: index.php");
 }

@@ -102,7 +102,7 @@ else
         <!-- Header -->
 
         <nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
-            <div class="container">
+            <!-- <div class="container"> -->
 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -117,19 +117,26 @@ else
 
                 <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse text-center">
                     <ul class="nav navbar-nav pull-center">
-                        <li class="<?php  setActiveClassMenu('index.php'); ?>">
+                    <?php
+                    if (!isset($sessio_data['id']) || !isset($sessio_data['name']) || !isset($sessio_data['email'])) {
+                        ?>
+                        <li class="<?php  /*setActiveClassMenu('index.php');*/ ?>">
                             <a href="index.php">Home</a>                        </li>
 <!--                                         <li>
                                                 <a href="signup.php">Signup</a>
                                             </li>-->
                        <?php
+                    }
                         if (isset($sessio_data['id']) || isset($sessio_data['name']) || isset($sessio_data['email'])) {
                             ?>
                             <li>
-                                <a href="#">Welcome, <?php echo $sessio_data['name']; ?></a>
+                                <a href="index.php">Welcome, <b class="user"><?php echo $sessio_data['name']; ?></b></a>
                             </li>
                             <li>
                                 <a href="index.php#services">Book A Service</a>
+                            </li>
+                            <li class="logo-space">
+                                <a href=""></a>
                             </li>
                             <li>
                                 <a href="dashboard.php">Dashboard</a>
@@ -158,7 +165,7 @@ else
                         </li>
                     </ul>         
                 </div>
-            </div>
+            <!-- </div> -->
         </nav>
 
         <!-- End Header -->

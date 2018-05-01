@@ -90,9 +90,9 @@ include("mainheader.php");
         <section id="services" class="services-section section-global-wrapper">
             <div class="container">
                 <div class="row">
-                    <div class="services-header">
+                    <div class="services-header"><br/><br/>
                         <h1 class="services-header-title">Our Services</h1>
-                        <p class="services-header-body">Things we provide in your home</p>
+                        <p class="services-header-body">Things we provides to your Home ..</p>
                     </div>
                 </div>
                             <div class="row services-row services-row-head services-row-1">
