@@ -426,8 +426,24 @@ p.blog-text{
 
 @media (max-width: 768px){ 
     .office-logo{
-      height: 100px;
-      width: 60px;
+      height: 90px;
+      width: auto;
+      left: 28%;
+  }
+  .banner {
+    background: url(../../image/sofa_cleaning.jpg) top left / cover no-repeat !important;
+  }
+  .main {
+    background: url(../../image/clean21.jpg) top center / auto 100% no-repeat fixed !important;
+  }
+  .xs-right {
+      /* text-align: right !important; */
+      margin-left: 70%;
+  }
+  .dropdown-menu {
+      min-width: 100px !important;
+      width: 300px !important;
+      left: -250px !important;
   }
 }
 

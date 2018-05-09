@@ -93,7 +93,7 @@ include "mainheader.php";
             <div class="col col-lg-4 col-lg-offset-4 col-xs-12">
                 <h1 class="text-center">Your Dashboard</h1>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 xs-right">
                 <div class="profile-widget profile-widget-info">
                     <div class="panel-body">
                       
