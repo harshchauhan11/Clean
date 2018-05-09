@@ -15,7 +15,7 @@ echo $inner_id . "<br>";
 echo $amount . "<br>";
 */
 // echo $start_date;
-
+// for pending
 
 $insert_sql = "INSERT INTO orders (user_id, worker_id, work_time_id, inner_service_id, amount, request_date, status, start_date)"
         . " VALUES ('$uid', '$wid', '$time_id', '$inner_id', '$amount', now(), 'PENDING', '$start_date')";

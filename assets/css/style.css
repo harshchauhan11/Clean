@@ -1301,14 +1301,9 @@ hr {
     margin-top: 5px;
     /* height: 20px; */
 }
-.leftPic {
-    background: url(../../image/small/2.jpg) center 20px / auto 90% no-repeat;
-    height: 200px;
-}
-.rightPic {
-    background: url(../../image/small/3.png) center 20px / auto 90% no-repeat;
-    height: 200px;
-}
+
+
+
 .red {
     color: #CF000F !important;
 }

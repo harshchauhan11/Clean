@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 02:58 PM
+-- Generation Time: May 02, 2018 at 08:53 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -85,40 +85,28 @@ CREATE TABLE IF NOT EXISTS `inner_service` (
   `info` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_OuterInner` (`outerid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=469 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=422 ;
 
 --
 -- Dumping data for table `inner_service`
 --
 
 INSERT INTO `inner_service` (`id`, `i_sname`, `path`, `outerid`, `rate`, `info`) VALUES
-(381, 'Home Deep Cleaning', 'service_image/cleaning-kitchen02272018101328.jpg', 4, 3000, ' Month'),
-(384, 'Kitchen Deep Cleaning', 'service_image/download (4)02272018101808.jpg', 4, 999, 'Day'),
-(386, 'Bathroom Deep Cleaning', 'service_image/images (15)02272018102022.jpg', 4, 699, ' Bathroom'),
-(388, 'Sofa Cleaning', 'service_image/b386eabb831740bba69dd316847469a202272018102221.jpg', 4, 199, ''),
-(391, 'AC Service  & Repair', 'service_image/animated-clipart-air-conditioner-1002272018105730.jpg', 5, 299, 'AC Service  & Repair'),
-(395, 'Refrigerator Repair', 'service_image/images (11)02272018110003.jpg', 5, 249, 'Refrigerator Repair'),
-(397, 'Water Purifier Repair', 'service_image/dolphin-ro-purifier-500x50002272018110619.jpg', 5, 199, 'Water Purifier Repai'),
-(399, 'TV Repair', 'service_image/images (4)02272018110938.png', 5, 249, 'TV Repair'),
-(403, 'Washing Machine Repair', 'service_image/laundry_machine02272018111444.png', 5, 249, 'Washing Machine Repa'),
-(405, 'Microwave  Repair', 'service_image/microwave-oven-clipart-0302272018111808.jpg', 5, 299, 'Microwave  Repair'),
-(409, 'Flour Mill Repair', 'service_image/atta-maker-500x50002272018112947.jpg', 5, 199, 'Flour Mill Repair'),
-(411, 'Water Heater Repair', 'service_image/images (8)02272018114236.png', 5, 199, 'Water Heater Repair'),
-(415, 'Driver', 'service_image/blonde-in-car-clipart-102272018115125.jpg', 6, 199, 'Day'),
-(419, 'Gardener', 'service_image/watering-can-clipart-child-gardening-502272018115516.jpg', 6, 199, 'Day'),
-(421, 'Security', 'service_image/images (9)02272018115918.png', 6, 249, 'Month');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order`
---
-
-CREATE TABLE IF NOT EXISTS `order` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `rate` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(381, 'Home Deep Cleaning', 'service_image/692600 (2).png', 4, 3000, ' Month'),
+(384, 'Kitchen Deep Cleaning', 'service_image/icon17.png', 4, 999, 'Day'),
+(386, 'Bathroom Deep Cleaning', 'service_image/icon4.png', 4, 699, ' Bathroom'),
+(388, 'Sofa Cleaning', 'service_image/icon22.png', 4, 199, ''),
+(391, 'AC Service  & Repair', 'service_image/icone5.png', 5, 299, 'AC Service  & Repair'),
+(395, 'Refrigerator Repair', 'service_image/icon7.png', 5, 249, 'Refrigerator Repair'),
+(397, 'Water Purifier Repair', 'service_image/542536.png', 5, 199, 'Water Purifier Repai'),
+(399, 'TV Repair', 'service_image/icon9.png', 5, 249, 'TV Repair'),
+(403, 'Washing Machine Repair', 'service_image/150404.png', 5, 249, 'Washing Machine Repa'),
+(405, 'Microwave  Repair', 'service_image/icon10png.png', 5, 299, 'Microwave  Repair'),
+(409, 'Flour Mill Repair', 'service_image/icon13.png', 5, 199, 'Flour Mill Repair'),
+(411, 'Water Heater Repair', 'service_image/icon16.png', 5, 199, 'Water Heater Repair'),
+(415, 'Driver', 'service_image/driver.png', 6, 199, 'Day'),
+(419, 'Gardener', 'service_image/gardener.png', 6, 199, 'Day'),
+(421, 'Security', 'service_image/security.png', 6, 249, 'Month');
 
 -- --------------------------------------------------------
 
@@ -136,28 +124,54 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `booking_date` timestamp NULL DEFAULT NULL,
   `request_date` timestamp NULL DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `worker_id`, `work_time_id`, `inner_service_id`, `amount`, `booking_date`, `request_date`, `status`) VALUES
-(72, 1, 58, 1, 381, 3000, '2018-03-22 16:06:00', '0000-00-00 00:00:00', NULL),
-(73, 1, 58, 1, 381, 3000, '2018-03-22 16:31:49', '0000-00-00 00:00:00', NULL),
-(74, 96, 108, 3, 381, 3000, '2018-03-23 12:22:49', '0000-00-00 00:00:00', NULL),
-(75, 96, 109, 3, 381, 3000, '2018-03-23 12:24:19', '0000-00-00 00:00:00', 'ACCEPTED'),
-(76, 96, 110, 3, 381, 3000, '2018-03-30 19:35:40', '2018-03-23 12:27:40', 'REJECTED'),
-(77, 96, 109, 2, 381, 3000, '2018-03-23 12:30:16', '0000-00-00 00:00:00', 'ACCEPTED'),
-(78, 96, 110, 4, 381, 3000, '2018-03-31 18:41:32', '2018-03-24 15:41:25', 'REJECTED'),
-(79, 96, 108, 2, 381, 3000, '2018-03-25 16:27:43', '2018-03-24 22:02:08', 'ACCEPTED'),
-(80, 96, 108, 5, 381, 3000, '2018-03-25 18:25:52', '2018-03-25 18:18:10', 'ACCEPTED'),
-(81, 121, 114, 2, 391, 299, NULL, '2018-04-04 10:03:19', 'PENDING'),
-(82, 121, 112, 4, 391, 299, NULL, '2018-04-04 10:07:26', 'PENDING'),
-(83, 96, 112, 2, 391, 299, NULL, '2018-04-04 10:10:11', 'PENDING'),
-(84, 96, 113, 2, 391, 299, '2018-04-04 10:18:41', '2018-04-04 10:15:44', 'REJECTED'),
-(85, 121, 116, 2, 415, 199, '2018-04-04 10:23:59', '2018-04-04 10:23:22', 'ACCEPTED');
+INSERT INTO `orders` (`id`, `user_id`, `worker_id`, `work_time_id`, `inner_service_id`, `amount`, `booking_date`, `request_date`, `status`, `start_date`) VALUES
+(72, 1, 58, 1, 381, 3000, '2018-03-22 16:06:00', '0000-00-00 00:00:00', NULL, '2018-03-22'),
+(73, 1, 58, 1, 381, 3000, '2018-03-22 16:31:49', '0000-00-00 00:00:00', NULL, '2018-03-22'),
+(74, 96, 108, 3, 381, 3000, '2018-03-23 12:22:49', '0000-00-00 00:00:00', NULL, '2018-03-23'),
+(75, 96, 109, 3, 381, 3000, '2018-03-23 12:24:19', '0000-00-00 00:00:00', 'ACCEPTED', '2018-03-23'),
+(76, 96, 110, 3, 381, 3000, '2018-03-30 19:35:40', '2018-03-23 12:27:40', 'REJECTED', '2018-03-31'),
+(77, 96, 109, 2, 381, 3000, '2018-03-23 12:30:16', '0000-00-00 00:00:00', 'ACCEPTED', '2018-03-23'),
+(78, 96, 110, 4, 381, 3000, '2018-03-31 18:41:32', '2018-03-24 15:41:25', 'REJECTED', '2018-04-01'),
+(79, 96, 108, 2, 381, 3000, '2018-03-25 16:27:43', '2018-03-24 22:02:08', 'ACCEPTED', '2018-03-25'),
+(80, 96, 108, 5, 381, 3000, '2018-03-25 18:25:52', '2018-03-25 18:18:10', 'ACCEPTED', '2018-03-25'),
+(81, 121, 114, 2, 391, 299, '2018-04-24 12:06:55', '2018-04-04 10:03:19', 'ACCEPTED', '2018-04-24'),
+(82, 121, 112, 4, 391, 299, '2018-04-07 06:22:04', '2018-04-04 10:07:26', 'ACCEPTED', '2018-04-07'),
+(83, 96, 112, 2, 391, 299, '2018-04-07 06:22:48', '2018-04-04 10:10:11', 'ACCEPTED', '2018-04-07'),
+(84, 96, 113, 2, 391, 299, '2018-04-04 10:18:41', '2018-04-04 10:15:44', 'REJECTED', '2018-04-04'),
+(85, 121, 116, 2, 415, 199, '2018-04-04 10:23:59', '2018-04-04 10:23:22', 'ACCEPTED', '2018-04-04'),
+(86, 123, 138, 2, 395, 249, '2018-04-06 09:21:21', '2018-04-06 09:18:28', 'ACCEPTED', '2018-04-06'),
+(87, 130, 117, 2, 415, 199, '2018-04-06 09:25:19', '2018-04-06 09:24:09', 'REJECTED', '2018-04-06'),
+(88, 125, 122, 2, 386, 699, '2018-04-06 09:30:53', '2018-04-06 09:28:54', 'REJECTED', '2018-04-06'),
+(89, 124, 138, 2, 395, 249, '2018-04-06 18:14:24', '2018-04-06 18:12:46', 'REJECTED', '2018-04-06'),
+(90, 124, 132, 2, 384, 999, '2018-04-06 18:22:48', '2018-04-06 18:21:56', 'ACCEPTED', '2018-04-06'),
+(91, 129, 138, 2, 395, 249, '2018-04-07 05:45:07', '2018-04-07 05:43:47', 'REJECTED', '2018-04-07'),
+(92, 129, 138, 4, 395, 249, '2018-04-07 05:48:51', '2018-04-07 05:47:55', 'ACCEPTED', '2018-04-07'),
+(93, 127, 138, 5, 395, 249, '2018-04-08 06:42:47', '2018-04-08 06:41:36', 'REJECTED', '2018-04-08'),
+(94, 127, 132, 2, 384, 999, '2018-04-08 06:44:10', '2018-04-08 06:43:31', 'ACCEPTED', '2018-04-08'),
+(95, 125, 131, 2, 384, 999, '2018-04-08 11:58:03', '2018-04-08 11:57:06', 'REJECTED', '2018-04-08'),
+(96, 125, 133, 2, 384, 999, '2018-04-08 12:00:27', '2018-04-08 11:58:36', 'ACCEPTED', '2018-04-08'),
+(97, 120, 112, 2, 391, 299, NULL, '2018-04-10 16:10:49', 'PENDING', NULL),
+(98, 120, 113, 2, 391, 299, '2018-04-18 18:33:24', '2018-04-10 16:12:30', 'ACCEPTED', '2018-04-19'),
+(99, 129, 138, 5, 395, 249, '2018-04-10 16:16:48', '2018-04-10 16:15:23', 'ACCEPTED', '2018-04-10'),
+(100, 127, 110, 2, 381, 3000, '2018-04-10 16:27:51', '2018-04-10 16:27:07', 'ACCEPTED', '2018-04-10'),
+(101, 124, 131, 2, 384, 999, '2018-04-10 16:31:54', '2018-04-10 16:30:46', 'ACCEPTED', '2018-04-10'),
+(102, 96, 110, 2, 381, 3000, '2018-04-10 16:56:45', '2018-04-10 16:55:43', 'ACCEPTED', '2018-04-10'),
+(103, 96, 131, 2, 384, 999, NULL, '2018-04-10 16:57:34', 'PENDING', NULL),
+(104, 127, 113, 2, 391, 299, '2018-04-20 09:07:18', '2018-04-11 04:21:11', 'ACCEPTED', '2018-04-20'),
+(105, 127, 112, 2, 391, 299, '2018-04-11 04:27:33', '2018-04-11 04:22:24', 'ACCEPTED', '2018-04-11'),
+(106, 127, 114, 2, 391, 299, '2018-04-11 04:26:34', '2018-04-11 04:25:21', 'ACCEPTED', '2018-04-11'),
+(107, 123, 114, 2, 391, 299, '2018-04-24 12:06:51', '2018-04-24 12:05:23', 'ACCEPTED', '2018-04-24'),
+(108, 124, 110, 2, 381, 6000, '2018-04-24 14:11:25', '2018-04-24 14:06:06', 'ACCEPTED', '2018-04-24'),
+(109, 120, 138, 3, 395, 249, '2018-04-26 02:03:20', '2018-04-26 02:02:12', 'ACCEPTED', '2018-04-27'),
+(110, 120, 138, 5, 395, 249, '2018-04-26 02:06:08', '2018-04-26 02:05:53', 'ACCEPTED', '2018-04-28');
 
 -- --------------------------------------------------------
 
@@ -178,9 +192,9 @@ CREATE TABLE IF NOT EXISTS `outer_service` (
 --
 
 INSERT INTO `outer_service` (`id`, `upload`, `sname`, `path`) VALUES
-(4, '', 'Home Cleaning  & Care ', 'service_image/cleaning-clipart-house-1502272018100626.jpg'),
-(5, '', 'Home  Appliances', 'service_image/samsung-kitchen-appliance-package02272018100906.png'),
-(6, '', 'Outdoor', 'service_image/2439018102272018101106.jpg');
+(4, '', 'Home Cleaning  & Care ', 'service_image/icon1.png'),
+(5, '', 'Home  Appliances', 'service_image/icon2.png'),
+(6, '', 'Outdoor', 'service_image/icon3.png');
 
 -- --------------------------------------------------------
 
@@ -222,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_worker_rate` (`user_id`,`worker_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `ratings`
@@ -231,7 +245,12 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 INSERT INTO `ratings` (`id`, `user_id`, `worker_id`, `rating`, `time`) VALUES
 (1, 96, 109, 3, '2018-04-01 02:58:50'),
 (3, 96, 108, 3, '2018-04-01 15:46:07'),
-(4, 121, 116, 5, '2018-04-04 15:54:37');
+(4, 121, 116, 5, '2018-04-04 15:54:37'),
+(5, 123, 138, 3, '2018-04-06 14:52:11'),
+(6, 96, 112, 3, '2018-04-07 11:51:42'),
+(7, 127, 132, 3, '2018-04-08 12:14:23'),
+(8, 125, 133, 3, '2018-04-08 17:30:53'),
+(9, 124, 132, 1, '2018-04-10 22:02:22');
 
 -- --------------------------------------------------------
 
@@ -251,16 +270,37 @@ CREATE TABLE IF NOT EXISTS `requests` (
   PRIMARY KEY (`id`),
   KEY `reqFrom` (`reqFrom`),
   KEY `reqTo` (`reqTo`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `requests`
 --
 
 INSERT INTO `requests` (`id`, `reqFrom`, `reqTo`, `type`, `comment`, `status`, `date`, `order_id`) VALUES
-(1, 110, 96, 'request', 'REJECTED', 'not_seen', '2018-03-31 18:46:38', 78),
+(1, 110, 96, 'request', 'REJECTED', 'seen', '2018-04-07 06:20:51', 78),
 (2, 113, 96, 'request', 'REJECTED', 'not_seen', '2018-04-04 10:18:41', NULL),
-(3, 116, 121, 'request', 'ACCEPTED', 'not_seen', '2018-04-04 10:23:59', NULL);
+(3, 116, 121, 'request', 'ACCEPTED', 'not_seen', '2018-04-04 10:23:59', NULL),
+(4, 138, 123, 'request', 'ACCEPTED', 'not_seen', '2018-04-06 09:21:21', NULL),
+(5, 117, 130, 'request', 'REJECTED', 'not_seen', '2018-04-06 09:25:20', NULL),
+(6, 122, 125, 'request', 'REJECTED', 'not_seen', '2018-04-06 09:30:53', NULL),
+(7, 138, 124, 'request', 'REJECTED', 'seen', '2018-04-06 18:15:36', 89),
+(8, 132, 124, 'request', 'ACCEPTED', 'seen', '2018-04-06 18:23:37', 90),
+(9, 138, 129, 'request', 'REJECTED', 'seen', '2018-04-07 05:45:24', 91),
+(10, 138, 129, 'request', 'ACCEPTED', 'seen', '2018-04-07 05:49:00', 92),
+(11, 138, 127, 'request', 'REJECTED', 'seen', '2018-04-08 06:42:56', 93),
+(12, 132, 127, 'request', 'ACCEPTED', 'seen', '2018-04-08 06:44:21', 94),
+(13, 131, 125, 'request', 'REJECTED', 'seen', '2018-04-08 11:58:14', 95),
+(14, 133, 125, 'request', 'ACCEPTED', 'seen', '2018-04-08 12:00:51', 96),
+(15, 131, 124, 'request', 'ACCEPTED', 'seen', '2018-04-24 14:04:39', 101),
+(16, 114, 127, 'request', 'ACCEPTED', 'seen', '2018-04-11 04:26:48', 106),
+(17, 112, 127, 'request', 'ACCEPTED', 'seen', '2018-04-11 04:27:45', 105),
+(18, 113, 120, 'request', 'ACCEPTED', 'seen', '2018-04-26 02:00:56', 98),
+(19, 113, 127, 'request', 'ACCEPTED', 'not_seen', '2018-04-20 09:07:18', 104),
+(20, 114, 123, 'request', 'ACCEPTED', 'seen', '2018-04-24 12:11:07', 107),
+(21, 114, 121, 'request', 'ACCEPTED', 'not_seen', '2018-04-24 12:06:55', 81),
+(22, 110, 124, 'request', 'ACCEPTED', 'not_seen', '2018-04-24 14:11:25', 108),
+(23, 138, 120, 'request', 'ACCEPTED', 'not_seen', '2018-04-26 02:03:20', 109),
+(24, 138, 120, 'request', 'ACCEPTED', 'not_seen', '2018-04-26 02:06:08', 110);
 
 -- --------------------------------------------------------
 
@@ -284,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `signup` (
   `area` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=139 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=140 ;
 
 --
 -- Dumping data for table `signup`
@@ -320,7 +360,8 @@ INSERT INTO `signup` (`id`, `name`, `role`, `service`, `time`, `email`, `address
 (133, 'Honey', 'Worker', '384', '', 'Honey@gmail.com', 'R-1 Suvarn Flat,Ahmedabad', '9898757545', 'Honey@45', 'female', 41, '4th pass', 'Balolnager'),
 (134, 'Urvi', 'Worker', '384', '', 'Urvi@gmail.com', 'H-8 MAHALAXMI Tenament,Ahmedabad', '8989786858', 'Urvi@588', 'female', 32, '7th pass', 'Akhbarnager'),
 (137, 'Ramesh', 'Worker', '397', '', 'Ramesh11@gmail.com', 'E-33 Suvarna Flat,Ahmedabad ', '9898989867', 'Ramesh@67', 'male', 30, 'HSC', 'Chandlodiya'),
-(138, 'Suresh', 'Worker', '395', '', 'Suresh@gmail.com', 'a-1 Amravati Socity,Ahmedabad', '9090907080', 'Suresh@80', 'male', 41, 'SSC', 'Gota');
+(138, 'Suresh', 'Worker', '395', '', 'Suresh@gmail.com', 'a-1 Amravati Socity,Ahmedabad', '9090907080', 'Suresh@80', 'male', 41, 'SSC', 'Gota'),
+(139, 'ashifa', 'Worker', '', '', 'ashifa@gmail.com', 'rajpurohit socity', '9087675645', 'Ashifa@12', 'female', 33, 'ssc', 'ranip');
 
 -- --------------------------------------------------------
 
@@ -354,6 +395,48 @@ INSERT INTO `worker_register` (`id`, `name`, `email`, `outer_service`, `password
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `worker_services`
+--
+
+CREATE TABLE IF NOT EXISTS `worker_services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `worker_id` int(11) NOT NULL,
+  `inner_service_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_worker_services_signup` (`worker_id`),
+  KEY `FK_worker_services_inner_service` (`inner_service_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Dumping data for table `worker_services`
+--
+
+INSERT INTO `worker_services` (`id`, `worker_id`, `inner_service_id`) VALUES
+(1, 108, 381),
+(2, 109, 381),
+(3, 110, 381),
+(4, 111, 381),
+(5, 112, 391),
+(6, 113, 391),
+(7, 114, 391),
+(8, 115, 391),
+(9, 116, 415),
+(10, 117, 415),
+(11, 118, 415),
+(12, 119, 415),
+(13, 122, 386),
+(14, 131, 384),
+(15, 132, 384),
+(16, 133, 384),
+(17, 134, 384),
+(18, 137, 397),
+(19, 138, 395),
+(32, 139, 384),
+(33, 139, 388);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `worker_timing`
 --
 
@@ -364,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `worker_timing` (
   PRIMARY KEY (`id`),
   KEY `work_time_id` (`work_time_id`),
   KEY `worker_id` (`worker_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Dumping data for table `worker_timing`
@@ -444,7 +527,12 @@ INSERT INTO `worker_timing` (`id`, `work_time_id`, `worker_id`) VALUES
 (75, 3, 138),
 (76, 4, 138),
 (77, 5, 138),
-(78, 6, 138);
+(78, 6, 138),
+(79, 2, 139),
+(80, 3, 139),
+(81, 4, 139),
+(82, 5, 139),
+(83, 6, 139);
 
 -- --------------------------------------------------------
 
@@ -478,6 +566,13 @@ INSERT INTO `work_time` (`id`, `time`) VALUES
 --
 ALTER TABLE `inner_service`
   ADD CONSTRAINT `FK_OuterInner` FOREIGN KEY (`outerid`) REFERENCES `outer_service` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `worker_services`
+--
+ALTER TABLE `worker_services`
+  ADD CONSTRAINT `FK_worker_services_inner_service` FOREIGN KEY (`inner_service_id`) REFERENCES `inner_service` (`id`),
+  ADD CONSTRAINT `FK_worker_services_signup` FOREIGN KEY (`worker_id`) REFERENCES `signup` (`id`);
 
 --
 -- Constraints for table `worker_timing`

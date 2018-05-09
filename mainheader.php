@@ -25,6 +25,7 @@ if(isset($_SESSION["userdata"]))
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/style-projects.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.barrating.min.js"></script>
+        <link href="js/fontawesome-stars-o.css" rel="stylesheet">
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="image/logo.png">

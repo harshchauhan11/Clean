@@ -62,13 +62,13 @@ $stmt1 = mysqli_prepare($conn, $sql);
 if (mysqli_query($conn, $sql)) {
             echo "New record created successfully";
             ?>  
-<!--            <script>
+          <script>
                 {
                     alert("Thank you for add service");
 
                 }
                 window.location.assign("inner_service.php")
-            </script>-->
+            </script>
             <?php
         } else {
             echo "Error: " . $sql . "" . mysqli_error($conn);
