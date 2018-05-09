@@ -637,7 +637,7 @@ footer a {
     /* background: #000 !important; */
 }
 .form-horizontal {
-    width: 700px;
+    width: auto;
     padding: 10px 30px 10px 30px;
     border-radius: 20px;
     margin: 50px auto 20px auto;

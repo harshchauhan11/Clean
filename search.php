@@ -138,7 +138,7 @@ if (mysqli_num_rows($result) > 0) {
             // alert("wid = "+$wid);
             
             $.post("hire.php", {uid: $user_id, wid: $wid, inner_id: $inner_id, time_id: $time, amount: $amount, start_date: $start_date}, function(result){
-                alert("result = "+result);
+                // alert("result = "+result);
                 if(result.trim() == 1) {
                     // SUCCESS
                     alert("Your Service Request has been sent Successfully ! Worker need to accept it. \nWe will inform you shortly.");

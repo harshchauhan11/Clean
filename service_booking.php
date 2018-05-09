@@ -120,12 +120,14 @@ if (mysqli_num_rows($result) > 0) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery.barrating.min.js"></script>
+
+<div class="main">
 <div class="container">
     <div class="row">
         <div class="col col-lg-12 middleHeader">
             <h1 class="text-center">Service Booking</h1>
         </div>
-        <div class="col col-lg-12 middleSection"><br/>
+        <div class="col col-lg-12 middleSection">
     
     <!-- <form id="searchForm" class="form-horizontal" method="get"
           action="search.php" onsubmit="return validate()" name="f1"> -->
@@ -420,6 +422,8 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     </div>
 </div>
+</div>
+
 <!-- javascripts -->
     <!-- <script src="js/form-validation-script.js"></script> -->
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
