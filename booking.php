@@ -15,6 +15,7 @@ echo $time_id . "<br>";
 echo $inner_id . "<br>";
 echo $amount . "<br>";
 */
+// UPDATE order with ACCEPTED / REJECTED.
 
 
 $update_orders_table = "UPDATE orders SET booking_date = now(), status = '$status' WHERE id = $oid";

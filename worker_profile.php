@@ -158,14 +158,7 @@ echo date("Y/m/d") . "<br>";
                                     <!--<span><i class="icon_pin_alt"></i>NY</span>-->
                                 </h6>
                 </div>
-                <div class="col-lg-1 col-sm-1 col-centered follow-info notify_icons">
-                  <ul>
-                    <li class="active text-center">
-                        <i class="fa fa-comments fa-2x" data-toggle="dropdown"> </i> <span class="caret"></span>
-                    </li>
-
-                  </ul>
-                </div>
+              
                 <?php
 $sql = "SELECT *, (SELECT name FROM signup WHERE id = user_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = user_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE worker_id = " . $sessio_data['id'] . " AND status = 'PENDING'";
     $result = mysqli_query($conn, $sql);

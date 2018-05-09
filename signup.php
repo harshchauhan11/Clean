@@ -299,7 +299,7 @@ include("mainheader.php");
       <!-- Password-->
       <label class="col-md-4 control-label" for="password">Password</label>
       <div class="col-md-6">
-          <input type="password" id="password" name="password" placeholder=""  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Choose secure password"
+          <input type="password" id="password" name="password" placeholder=""  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Uppercase and lowercase letters number and any special type of symbol."
                 class="form-control input-md" required>
         <span class="help-block"></span>
       </div>

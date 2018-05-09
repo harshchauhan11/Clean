@@ -30,7 +30,7 @@
     ?>
       
 <?php
-$page_name="My Feedback";
+$page_name="Contact";
 include("mainheader.php");
 ?>
             
@@ -39,7 +39,7 @@ include("mainheader.php");
     <form class="form-horizontal" method="post"
           action="feedback.php" onsubmit="return validate()" name="f1">
           <div class="text-center">
-            <h1 class="nice">Feed<b>Back</b></h1>
+            <h1 class="nice">Contact<b>Us</b></h1>
         </div><hr>
           <fieldset>
         <div class="form-group">

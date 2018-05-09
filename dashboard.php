@@ -96,16 +96,7 @@ include "mainheader.php";
             <div class="col-lg-4">
                 <div class="profile-widget profile-widget-info">
                     <div class="panel-body">
-                        <div class="col-lg-1 col-sm-1 col-centered follow-info notify_icons">
-                            <ul>
-                                <li class="active text-center">
-                                    <div class="btn-group show-on-hover">
-                                        <i class="fa fa-comments fa-2x" data-toggle="dropdown"> </i> <span class="caret"></span>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
+                      
                         <?php
                                 // $sql = "SELECT *, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service FROM orders WHERE user_id = ".$sessio_data['id']." AND (status = 'REJECTED' OR status = 'ACCEPTED') ORDER BY booking_date DESC";
                                 $sql = "SELECT r.*, (SELECT name FROM signup WHERE id = worker_id) AS user_name, (SELECT CASE WHEN gender = 'female' THEN 'Ms.' ELSE 'Mr.' END FROM signup WHERE id = worker_id) AS user_prefix, (SELECT time FROM work_time WHERE id = work_time_id) AS work_time, (SELECT i_sname FROM inner_service WHERE id = inner_service_id) AS service, inner_service_id, booking_date, start_date, o.status AS order_status FROM requests r INNER JOIN orders o ON o.id = r.order_id WHERE r.reqTo = ".$sessio_data['id']." AND (o.status = 'REJECTED' OR o.status = 'ACCEPTED') ORDER BY start_date DESC";
@@ -186,14 +177,7 @@ include "mainheader.php";
                                 }
                                 ?>
                             
-                        <div class="col-lg-1 col-sm-1 follow-info notify_icons">
-                            <ul>
-                                <li class="active text-center">
-                                    <i class="fa fa-tachometer fa-2x"> </i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                                       </div>
                 </div>
             </div>
         </div>
