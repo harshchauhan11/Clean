@@ -124,15 +124,18 @@ if (mysqli_num_rows($result) > 0) {
 <div class="main">
 <div class="container">
     <div class="row">
-        <div class="col col-lg-12 middleHeader">
+        <!-- <div class="col col-lg-12 middleHeader">
             <h1 class="text-center">Service Booking</h1>
-        </div>
+        </div> -->
         <div class="col col-lg-12 middleSection">
     
     <!-- <form id="searchForm" class="form-horizontal" method="get"
           action="search.php" onsubmit="return validate()" name="f1"> -->
     <form id="searchForm" class="form-horizontal" method="post"
           action="search.php" onsubmit="return validate()" name="f1">
+          <div class="text-center">
+            <h1 class="nice">Service <b>Booking</b></h1>
+          </div><hr>
         <fieldset>
             <!-- <legend> Details</legend> -->
             <div class="form-group">

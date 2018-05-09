@@ -58,7 +58,6 @@ if (isset($_SESSION["userdata"]) && $_SESSION["userdata"]["role"] == "Worker") {
 
 
 
-
     <!--main content start-->
     <section id="main-content" style="margin-right: 200px;">
       <section class="wrapper">
@@ -252,11 +251,11 @@ echo '<i class="fa fa-bell fa-2x btn btn-default dropdown-toggle" data-toggle="d
                       <i class="fa fa-user fa-1x"></i>Profile
                     </a>
                   </li>
-                  <li class="">
+                  <!-- <li class="">
                     <a data-toggle="tab" href="#edit-profile">
                       <i class="fa fa-envelope fa-1x"></i>Edit Profile
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </header>
               <div class="panel-body">

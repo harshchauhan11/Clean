@@ -215,8 +215,8 @@ include "mainheader.php";
                                 <img src="<?php echo $worker_pic; ?>" width="70px" class="worker_pic" />
                             </div>
                             <div class="col col-lg-4 col-xs-10">
-                                <?php echo $row['worker_id'] . ' : <b class="worker_name">' . $row['name']; ?></b><br/>
-                                <span class="light"><?php echo $row['email']; ?><br/>
+                                <?php echo /* $row['worker_id'] . ' : ' . */ '<b class="worker_name">' . $row['name']; ?></b><br/>
+                                <span class="light">Email: <?php echo $row['email']; ?><br/>
                                 <select class="rating" data-id="rate<?php echo $row['worker_id']; ?>">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -260,8 +260,7 @@ include "mainheader.php";
                                 }
                                 ?>
                                 
-                                
-                                Service Area: <?php echo $row['area']; ?></span>
+                                </span>
                             </div>
                             <div class="col col-lg-3 col-xs-6 text-right">
                                 Service : <b><?php echo '<a href="service_booking.php?inner_id='.$row['inner_service_id'].'">' . $row['inner_service'] . "</a>"; ?></b><br/>
@@ -304,8 +303,8 @@ include "mainheader.php";
                                 <img src="<?php echo $worker_pic; ?>" width="70px" class="worker_pic" />
                             </div>
                             <div class="col col-lg-4 col-xs-10">
-                                <?php echo $row['worker_id'] . ' : <b class="worker_name">' . $row['name']; ?></b><br/>
-                                <span class="light"><?php echo $row['email']; ?><br/>
+                                <?php echo /* $row['worker_id'] . ' : ' .  */'<b class="worker_name">' . $row['name']; ?></b><br/>
+                                <span class="light">Email: <?php echo $row['email']; ?><br/>Phone: <?php echo $row['phone']; ?><br/>
                                 <select class="rating" data-id="rate<?php echo $row['worker_id']; ?>">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -349,7 +348,7 @@ include "mainheader.php";
                                 ?>
                                 
                                 
-                                Service Area: <?php echo $row['area']; ?></span>
+                                </span>
                             </div>
                             <div class="col col-lg-3 col-xs-6 text-center">
                                 Service<br/><b><?php echo '<a href="service_booking.php?inner_id='.$row['inner_service_id'].'">' . $row['inner_service'] . "</a>"; ?></b>
